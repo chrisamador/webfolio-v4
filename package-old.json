@@ -23,11 +23,12 @@
   },
   "homepage": "https://github.com/chrisamador/webfolio-v4#readme",
   "dependencies": {
-    "babel-eslint": "^8.2.3",
+    "babel": "^6.23.0",
+    "babel-eslint": "^8.2.5",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
-    "gatsby": "^1.9.272",
-    "gatsby-link": "^1.6.44",
+    "gatsby": "^1.9.273",
+    "gatsby-link": "^1.6.45",
     "gatsby-plugin-less": "^1.1.8",
     "gatsby-plugin-react-svg": "^1.1.1",
     "gatsby-source-filesystem": "^1.5.39",
@@ -37,15 +38,17 @@
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "redux-thunk": "^2.3.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.13.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.9.1",
+    "eslint": "^5.0.1",
+    "eslint-plugin-react": "^7.10.0",
     "onchange": "^4.0.0",
-    "prettier": "1.13.5"
+    "prettier": "^1.13.7"
   }
 }
