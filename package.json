@@ -7,7 +7,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "eslint": "eslint --fix --quiet src/**/**/*.js",
-    "pretty": "prettier --write src/**/*.js",
+    "pretty": "prettier --write src/**/**/*.js",
     "pretty-watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "format": "npm run pretty && npm run eslint"
   },

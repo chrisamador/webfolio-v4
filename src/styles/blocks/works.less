@@ -1,0 +1,56 @@
+.works-hero{
+  height: 90vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+
+}
+.works-hero__title{
+  .h4();
+  font-size: @h1-fontsize - 20;
+  margin-bottom: @spacing;
+  color: @brand-black;
+
+  @media @min-sm{
+    font-size: @h1-fontsize;
+  }
+}
+
+.works-hero__subtitle{
+  .text-subtitle();
+}
+
+.works-hero__welcome{
+  // TODO: better composition with this class
+  // .home-hero__welcome();
+  display: inline-block;
+  position: relative;
+
+  &:before{
+    content: "";
+    width: @spacing;
+    height: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: @brand-tan;
+    margin-bottom: @spacing;
+  }
+
+  h6{
+    .logo-text();
+    text-align: left;
+    max-width: 180px;
+    color: @brand-tan;
+  }
+}
+
+.works-hero__arrow{
+  .home-hero__arrow();
+
+  .icon{
+    stroke: @brand-red;
+  }
+}

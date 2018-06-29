@@ -1,0 +1,278 @@
+.work-single__hero{
+  background-size: cover;
+  color: white;
+  background-color: @brand-black;
+  padding-top: @spacing-xlarge + @spacing-large ;
+}
+
+.work-single__preview{
+  .work-example__preview();
+  max-width: 300px;
+  margin-top: @spacing-medium;
+}
+
+.work-single__hero-mock{
+  position: relative;
+  margin-top: @spacing-large;
+}
+
+.work-single__hero-mock-meta{
+
+  @media @min-sm{
+    position: absolute;
+
+    &.is-right{
+      right: -190px;
+      width: 160px;
+    }
+
+    &.is-left{
+      text-align: right;
+      left: -190px;
+      width: 160px;
+    }
+  }
+}
+
+.work-single__hero-mock-meta-single{
+  margin-bottom: @spacing-small;
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  line-height: 1.3;
+
+  @media @min-sm{
+    width: 100%;
+    display: block;
+    margin-bottom: @spacing;
+  }
+  h6{
+    opacity: .5;
+    margin-bottom: @spacing-xsmall;
+  }
+}
+
+.work-single__breakdown{
+  position: relative;
+}
+
+.work-single__section{
+  padding: @spacing 0;
+  position: relative;
+}
+
+.work-single__section-title-area{
+  text-align: center;
+  margin-bottom: @spacing-large;
+}
+
+.work-single__section-number{
+  font-family: @font-family-monospace;
+  font-size: 150px;
+  line-height: 1;
+  color: #EBE7E1; //@brand-tan-light;
+}
+
+.work-single__section-title{
+  .text-subtitle();
+  color: @brand-tan-dark;
+  margin-top: -80px;
+}
+
+.work-single__section-content-designs{
+  padding: @spacing-medium 0;
+  color: white;
+
+  p{
+    opacity: .75;
+  }
+}
+
+.work-single__next{
+  text-align: center;
+}
+
+.work-single__next-thank-you{
+  color: @brand-tan;
+}
+
+.work-single__next-controls{
+  margin-top: @spacing-xlarge;
+  background-color: @brand-red;
+  padding: @spacing 0;
+}
+.work-single__next-link{
+  display: block;
+  background-color: white;
+  padding: @spacing;
+  margin-bottom: @spacing;
+  margin-top: -135px;
+  text-decoration: none;
+  background-size: 100%;
+  position: relative;
+
+  @media @min-sm{
+    padding: @spacing-large;
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 0;
+    transition: left 500ms ease;
+  }
+
+  &:hover,
+  &:focus{
+    color: white;
+
+    &:after{
+      left: 100%;
+    }
+
+    h6{
+      color: white;
+      opacity: .8;
+    }
+
+    .icon{
+      transform: translateX(10px);
+      stroke: white;
+    }
+  }
+
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  h6{
+    color: @brand-tan;
+    margin-bottom: @spacing-small;
+  }
+
+  .icon{
+    transition: transform 500ms @timing;
+  }
+}
+
+@keyframes nextHover {
+  100%{
+    bottom: 100%;
+  }
+}
+
+.work-single__next-all-projects-link{
+  display: inline-block;
+  color: @brand-red-light;
+  text-decoration: none;
+
+  &:hover,
+  &:focus{
+    color: white;
+
+    .icon{
+      transform: translateX(-10px);
+    }
+  }
+
+  .icon{
+    stroke: @brand-red-light;
+    transition: transform 500ms @timing;
+  }
+}
+
+/*
+*
+* Style Guide
+*
+*/
+
+.style-guide{
+  margin-bottom: @spacing-small;
+}
+
+.style-guide__header{
+  background-color: white;
+  padding: @spacing-small;
+  margin-bottom: @spacing-xsmall;
+
+  h5{
+    margin-bottom: 0;
+  }
+}
+
+.style-guide__content{
+  background-color: white;
+  padding: @spacing-small;
+}
+
+.style-guide__typefaces,
+.style-guide__brand-elm-img{
+  .img-responsive();
+}
+
+.brand-elm-color{
+  display: inline-block;
+  margin-right: @spacing-small;
+  margin-bottom: @spacing-small;
+
+  @media @min-sm{
+    margin-right: @spacing;
+    margin-bottom: 0;
+  }
+}
+
+.brand-elm-color__container{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-bottom: @spacing-xsmall;
+
+  @media @min-sm{
+    width: 130px;
+    height: 130px;
+  }
+}
+.brand-elm-color__plus,
+.brand-elm-color__main,
+.brand-elm-color__minus{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.brand-elm-color__plus{
+  width: 20%;
+  left: 0;
+}
+.brand-elm-color__main{
+  left: 20%;
+  width: 60%;
+}
+.brand-elm-color__minus{
+  left: 80%;
+  width: 20%;
+}
+
+/*
+*
+* Designs
+*
+*/
+
+.section-content-designs{
+  margin-bottom: @spacing-large;
+}
+
+.section-content-designs__caption{
+  margin-top: @spacing;
+
+  &.is-single{
+    text-align: center;
+  }
+}

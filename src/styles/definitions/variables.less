@@ -1,0 +1,215 @@
+// Colors
+
+@brand-red: #66272E;
+@brand-red-light: #b39397; //#B2727B;
+
+@brand-black: #252222;
+@brand-gray: #8B8B8B;
+
+@brand-tan-dark: #5F594A;
+@brand-tan: #B7AE9C;
+@brand-tan-light: #D9CFBB;
+
+@brand-blue: #2A4E66;
+@brand-blue-light: #526D7F;
+
+@brand-teal: #27665D;
+@brand-teal-light: #4FA296;
+
+@brand-purple: #2E1F5C;
+@brand-purple-light: #624D9F;
+
+@brand-orange: #BC862D;
+@brand-orange-light: #E3B05C;
+
+@brand-violet: #5A2765;
+@brand-violet-light: #854394;
+
+/**
+ *
+ * Sizing
+ *
+ */
+
+@spacing: 40px;
+@spacing-xsmall: @spacing/4;
+@spacing-small: @spacing/2;
+@spacing-medium: @spacing * 1.25;
+@spacing-large: @spacing * 2;
+@spacing-xlarge: @spacing * 4;
+
+@grid-gutter-width: @spacing;
+
+@padding-base-vertical:     @spacing / 4;
+@padding-base-horizontal:   @spacing / 2;
+
+@padding-large-vertical:    @spacing;
+@padding-large-horizontal:  @spacing + (@spacing/2);
+
+@padding-small-vertical:    @spacing / 4;
+@padding-small-horizontal:  @spacing / 2;
+
+@padding-xs-vertical:       1px;
+@padding-xs-horizontal:     5px;
+
+@line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
+@line-height-small:         1.5;
+
+@border-radius-base: 5px;
+
+/**
+ *
+ * Type
+ *
+ */
+
+@h1-fontsize: 52px;
+@h2-fontsize: 42px;
+@h3-fontsize: 24px;
+@h4-fontsize: 30px;
+@h5-fontsize: 16px;
+@h6-fontsize: 10px;
+
+@font-size-base: 16px;
+@font-size-small: 10px;
+
+@font-family-sans-serif: 'Nunito Sans', sans-serif;
+@headings-font-family: @font-family-sans-serif;
+@font-family-monospace:   'PT Mono', monospace;
+@font-family-base:        @font-family-sans-serif;
+
+
+/**
+ *
+ * Animation
+ *
+ */
+
+@timing: cubic-bezier(.82,0,.26,1);
+
+/**
+ *
+ *  Media Query Variables
+ *
+ */
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `@screen-xs` as of v3.0.1
+@screen-xs:                  480px;
+//** Deprecated `@screen-xs-min` as of v3.2.0
+@screen-xs-min:              @screen-xs;
+//** Deprecated `@screen-phone` as of v3.0.1
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+//** Deprecated `@screen-sm` as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+//** Deprecated `@screen-tablet` as of v3.0.1
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+//** Deprecated `@screen-md` as of v3.0.1
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+//** Deprecated `@screen-desktop` as of v3.0.1
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+//** Deprecated `@screen-lg` as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-lg-desktop:          @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+@grid-columns:              12;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:         @spacing;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+@grid-float-breakpoint:     @screen-sm-min;
+//** Point at which the navbar begins collapsing.
+@grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
+
+// Less than the Grid Float Breakpoint
+@max-breakpoint: ~"(max-width: @{grid-float-breakpoint-max})";
+// Greater than the Grid Float Breakpoint
+@min-breakpoint: ~"(min-width: @{grid-float-breakpoint})";
+
+// Only Extra-small
+@only-xs: ~"(max-width: @{screen-xs-max})";
+
+// Small and less
+@max-sm: ~"(max-width: @{screen-sm-max})";
+// Only Small
+@only-sm: ~"(min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+// Small and greater
+@min-sm: ~"(min-width: @{screen-sm-min})";
+
+// Medium and less
+@max-md: ~"(max-width: @{screen-md-max})";
+// Only Medium
+@only-md: ~"(min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+// Medium and greater
+@min-md: ~"(min-width: @{screen-md-min})";
+
+// Only Large
+@only-lg: ~"(min-width: @{screen-lg-min})";
+
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+@container-tablet:             (720px + @grid-gutter-width);
+//** For `@screen-sm-min` and up.
+@container-sm:                 @container-tablet;
+
+// Medium screen / desktop
+@container-desktop:            (940px + @grid-gutter-width);
+//** For `@screen-md-min` and up.
+@container-md:                 @container-desktop;
+
+// Large screen / wide desktop
+@container-large-desktop:      (1140px + @grid-gutter-width);
+//** For `@screen-lg-min` and up.
+@container-lg:                 @container-large-desktop;
+
+
+/**
+ *
+ * Z-index
+ *
+ */
+
+ @zindex-navbar:            1000;
+ @zindex-dropdown:          1010;
+ @zindex-popover:           1020;
+ @zindex-tooltip:           1025;
+ @zindex-navbar-fixed:      1030;
+ @zindex-modal-background:  1040;
+ @zindex-modal:             1050;
+
+
+/**
+ *
+ *  Shadows
+ *
+ */
+
+@box-shadow: 0 4px 8px rgba(0, 0, 0, 0.22);

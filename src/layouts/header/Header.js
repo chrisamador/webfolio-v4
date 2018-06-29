@@ -1,31 +1,78 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// @flow
+import React, { PureComponent } from "react";
+import Icon from "../../components/shared/Icon";
 import Link from 'gatsby-link';
 
-function mapStateToProps() {
-  return {
+type PropType = {
+  heroColor: string,
+  numWorks: number,
+  numLogs: number,
+  numNotes: number
+};
+type StateType = {
+  floatingNavActive: false
+};
 
-  };
-}
+class Header extends PureComponent<PropType, StateType> {
+  state = {};
+  anchorClick = (e: SyntheticEvent<HTMLAnchorElement>) => {
+    e.currentTarget.blur();
+    this.setState({
+      floatingNavActive: false
+    })
+  }
+  handleNavClick = (e: SyntheticEvent<HTMLAnchorElement>) => {
+    e.currentTarget.blur();
+    e.preventDefault();
 
-const ListLink = ({to, children}) =>
-  <Link style={{display: "inline-block", marginRight: 20}} to={to}>{children}</Link>
+    //document.body.classList.toggle("has-floating-nav-active");
 
-class Header extends Component {
-  render() {
+    this.setState((prevState) => ({
+      floatingNavActive: !prevState.floatingNavActive
+    }))
+  }
+  render(){
+    let {heroColor, numLogs, numWorks, numNotes} = this.props;
+    if(!heroColor) heroColor = "green";
+    if(!numLogs) numLogs = 99;
+    if(!numWorks) numWorks = 99;
+    if(!numNotes) numNotes = 99;
+
+    console.log(this);
+
     return (
-      <header>
-        <ListLink to="/">Home</ListLink>
-        <ListLink to="/blog">Blog</ListLink>
-        <ListLink to="/portfolio">Portfolio</ListLink>
-        <ListLink to="/about">About</ListLink>
-        <ListLink to="/contact">Contact</ListLink>
-
+      <header className={"nav-header" + (this.state.floatingNavActive ? " has-floating-nav-active" : "")}>
+        <div className="nav-header__logo">
+          <Link to="/">
+            <Icon id="icon-logo" className="icon-logo" fill={heroColor}/>
+          </Link>
+          <h6 className="nav-header__logo-text">
+            Creative Front-End Developer
+          </h6>
+        </div>
+        <nav className="nav-header__nav-list">
+          <ul className="primary-nav" style={{color: heroColor}}>
+            <li><Link to="/" exact onClick={this.anchorClick} activeClassName="active">Home</Link> </li>
+            <li><Link to="/works" exact onClick={this.anchorClick} activeClassName="active">Works <sup>{numWorks}</sup> </Link></li>
+            <li><Link to="/logs-and-notes" onClick={this.anchorClick} activeClassName="active">Logs & Notes <sup>{numLogs + numNotes}</sup> </Link></li>
+            <li><Link to="/about" exact onClick={this.anchorClick} activeClassName="active">About</Link> </li>
+            <li><a href="#" onClick={this.anchorClick}>Contact</a></li>
+          </ul>
+        </nav>
+        <div className="nav-header__floating-nav">
+          <a className="nav-header__nav-btn-link" href="#" onClick={this.handleNavClick}>
+            <span className="nav-header__nav-cover"></span>
+            <span className="nav-header__nav-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <h6>{(this.state.floatingNavActive ? "Close" : "Menu")}</h6>
+          </a>
+        </div>
       </header>
     );
   }
 }
 
-export default connect(
-  mapStateToProps
-)(Header);
+export default Header;

@@ -17,7 +17,7 @@ export default function worksReducer(state = initState.works, action){
 }
 
 // ACTIONS
-export class WORKSStateActions {
+export class WorksStateActions {
   static updateUserDataSuccess = (userData) => ({
     type: UPDATE_WORKS_DATA_SUCCESS,
     data: userData,

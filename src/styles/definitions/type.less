@@ -1,0 +1,204 @@
+body{
+    // font-weight: 600;
+    // letter-spacing: -.5px;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	line-height: 1.1;
+  font-weight: bold;
+}
+
+// Header Styles
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 a,
+.h6 a { font-weight: inherit; }
+
+h1,.h1 {
+	font-size: @h1-fontsize - 10;
+	line-height: 110%;
+	margin: 0 0 (@h1-fontsize / 2.5) 0;
+  font-weight: 600;
+
+	@media @min-sm{
+		font-size: @h1-fontsize;
+	}
+}
+h2,.h2 {
+	font-size: @h2-fontsize - 10;
+	line-height: 110%;
+	margin: (@h2-fontsize / 2) 0 (@h2-fontsize / 2.5) 0;
+
+	@media @min-sm{
+		font-size: @h2-fontsize;
+	}
+}
+h3,.h3 {
+	font-size: @h3-fontsize;
+	line-height: 110%;
+	margin: (@h3-fontsize / 2) 0 (@h3-fontsize / 2.5) 0;
+	font-weight: normal;
+}
+h4,.h4 {
+	font-size: @h4-fontsize;
+	line-height: 110%;
+	margin: (@h4-fontsize / 2) 0 (@h4-fontsize / 2.5) 0;
+	text-transform: uppercase;
+	letter-spacing: 7px;
+}
+h5,.h5 {
+	font-size: @h5-fontsize;
+	line-height: 110%;
+	margin: (@h5-fontsize / 2) 0 (@h5-fontsize / 2.5) 0;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+}
+h6,.h6 {
+	font-size: @h6-fontsize;
+	line-height: 110%;
+  margin: (@h6-fontsize / 2) 0 (@h6-fontsize / 2.5) 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+
+}
+
+p{
+	margin-bottom: @spacing-xsmall;
+}
+
+.ultra-small {
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
+
+.text-center{
+	text-align: center !important;
+}
+
+.text-sm-center{
+	@media @min-sm {
+		text-align: center !important;;
+	}
+}
+
+.text-md-center{
+	@media @min-md {
+		text-align: center !important;;
+	}
+}
+
+.text-right{
+	text-align: right !important;;
+}
+
+.text-sm-right{
+	@media @min-sm {
+		text-align: right !important;;
+	}
+}
+
+.text-md-right{
+	@media @min-md {
+		text-align: right !important;;
+	}
+}
+
+.lead{
+	font-size: 1.25em;
+	font-weight: inherit;
+}
+
+.helptext,
+.help-block,
+.caption{
+	font-size: @h6-fontsize;
+	color: @brand-black;
+    margin-bottom: @spacing-xsmall;
+
+    span&{
+        display: inline;
+    }
+
+    &.is-ib{
+        display: inline-block;
+    }
+}
+
+.helptext,
+.help-block
+.subtitle--top{
+	margin-bottom: @spacing-small;
+
+	& + *{
+		margin-top: 0;
+	}
+}
+
+.title{
+    margin-top: 0;
+    padding-bottom: @spacing-small;
+    margin-bottom: @spacing;
+    border-bottom: 1px solid @brand-black;
+}
+
+em{
+	color: @brand-black;
+}
+
+strong, b{
+	font-weight: 600;
+	font-weight: bolder;
+}
+
+a{
+	color: inherit;
+}
+
+.text-white{
+  color: white !important;
+}
+
+sup{
+	font-size: 50%;
+	vertical-align: super;
+}
+
+.logo-text{
+	font-family: @font-family-monospace;
+	letter-spacing: 4px;
+	line-height: 1.3;
+}
+
+.text-subtitle{
+	color: @brand-tan;
+	letter-spacing: 4px;
+}
+
+.text-section-title{
+	color: @brand-black;
+}
+
+.text-intro{
+	margin-top: @spacing;
+	margin-bottom: @spacing-small;
+}
+
+.text-group{
+	white-space: nowrap;
+}
+
+small{
+	font-size: 80%;
+	line-height: 1;
+}

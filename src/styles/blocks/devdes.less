@@ -1,0 +1,247 @@
+.devdes{
+
+}
+
+.devdes__hero{
+  padding-top: 25vh;
+  position: relative;
+}
+
+.devdes__hero-logos{
+  // margin-bottom: @spacing-medium;
+}
+
+.devdes__hero-intro{
+  max-width: 700px;
+  margin: 0 auto;
+  margin-bottom: @spacing-medium;
+}
+
+.devdes__hero-options{
+  margin-bottom: @spacing-large;
+}
+
+.devdes-logo{
+  text-align: center;
+  display: inline-block;
+  margin-bottom: @spacing;
+}
+
+.devdes-logo__subtitle{
+  .h6();
+  color: @brand-tan;
+}
+
+.devdes-logo__title{
+  .h4();
+  .text-section-title();
+}
+
+.devdes__list{
+  margin-bottom: @spacing;
+  position: relative;
+}
+
+
+/*
+*
+* Single Page
+*
+*/
+
+.devdes-single{
+
+  &.is-devlog{
+    &:before{
+      content: "";
+      display: block;
+      height: 2px;
+      background-color: @brand-black;
+    }
+
+    &.is-color-blue{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-blue;
+      }
+    }
+    &.is-color-purple{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-purple;
+      }
+    }
+    &.is-color-red{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-red;
+      }
+    }
+    &.is-color-violet{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-violet;
+      }
+    }
+    &.is-color-orange{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-orange;
+      }
+    }
+    &.is-color-teal{
+      &:before,
+      .devdes-single__dev-title{
+        background-color: @brand-teal;
+      }
+    }
+  }
+
+  &.is-desnote{
+
+    &.is-color-blue{
+      .devdes-single__des-title{
+        color: @brand-blue;
+
+        h6:before{
+          background: @brand-blue;
+        }
+      }
+    }
+    &.is-color-purple{
+      .devdes-single__des-title{
+        color: @brand-purple;
+
+        h6:before{
+          background: @brand-purple;
+        }
+      }
+    }
+    &.is-color-red{
+      .devdes-single__des-title{
+        color: @brand-red;
+
+        h6:before{
+          background: @brand-red;
+        }
+      }
+    }
+    &.is-color-violet{
+      .devdes-single__des-title{
+        color: @brand-violet;
+
+        h6:before{
+          background: @brand-violet;
+        }
+      }
+    }
+    &.is-color-orange{
+      .devdes-single__des-title{
+        color: @brand-orange;
+
+        h6:before{
+          background: @brand-orange;
+        }
+      }
+    }
+    &.is-color-teal{
+      .devdes-single__des-title{
+        color: @brand-teal;
+
+        h6:before{
+          background: @brand-teal;
+        }
+      }
+    }
+  }
+}
+
+
+.devdes-single__logo{
+  text-align: center;
+  padding-top: 140px;
+  padding-bottom: 0px;
+
+  @media @min-sm{
+    padding-top: @spacing;
+    padding-bottom: @spacing-large + @spacing-medium;
+  }
+}
+
+// Titles
+
+.devdes-single__dev-title{
+  background-color: @brand-black;
+  color: white;
+  padding: @spacing-small;
+  h6{
+    opacity: .5;
+  }
+}
+
+.devdes-single__des-title{
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+
+  h6:before {
+      content: "";
+      width: 40px;
+      height: 2px;
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #B7AE9C;
+      margin-bottom: 40px;
+  }
+}
+
+.devdes-single__hero{
+  margin-bottom: @spacing-large * 2;
+}
+
+// Meta
+
+.devdes-meta{
+  max-width: 650px;
+  margin: 0 auto;
+  margin-bottom: @spacing-small;
+
+  @media @min-sm{
+    margin-bottom: @spacing-medium;
+  }
+}
+
+.devdes-meta__single{
+  margin-bottom: @spacing-small;
+  
+  h6{
+    color: @brand-tan;
+  }
+
+  h5{
+    color: @brand-tan-dark;
+  }
+}
+
+// content
+
+.devdes-single__content-inner{
+  background-color: white;
+  margin-bottom: @spacing-large;
+  padding: @spacing-large @spacing;
+}
+
+.devdes-single__content-section{
+  margin-bottom: @spacing-large;
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+
+// related
+.devdes-single__related-title{
+  color: @brand-tan;
+  text-align: center;
+  margin-bottom: @spacing-medium;
+}

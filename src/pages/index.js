@@ -10,8 +10,8 @@ function mapStateToProps() {
 class HomePage extends Component {
   render() {
     return (
-      <div>
-        <h1>Homepage!</h1>
+      <div className="home">
+        <h1>Homepage Dude</h1>
       </div>
     );
   }
