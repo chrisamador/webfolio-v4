@@ -11,19 +11,5 @@ module.exports = {
       options: {
         include: /svg-icons/,
       },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/content/blog/`,
-        name: 'blog',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/content/portfolio/`,
-        name: 'portfolio',
-      },
     }],
 };
