@@ -9,7 +9,8 @@
     "eslint": "eslint --fix --quiet src/**/**/*.js",
     "pretty": "prettier --write src/**/**/*.js",
     "pretty-watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
-    "format": "npm run pretty && npm run eslint"
+    "icons": "node tools/svg-icons.js",
+    "format": "npm run eslint && npm run pretty"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "babel-eslint": "^8.2.3",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
+    "ejs": "^2.6.1",
     "gatsby": "^1.9.272",
     "gatsby-link": "^1.6.44",
     "gatsby-plugin-less": "^1.1.8",
@@ -34,7 +36,9 @@
     "gatsby-transformer-json": "^1.0.20",
     "gatsby-transformer-remark": "^1.7.44",
     "react-redux": "^5.0.7",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "svgo": "^1.0.5",
+    "svgstore": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
