@@ -1,4 +1,4 @@
-export default function(){
+export default function() {
   if (process.env.NODE_ENV === 'production') {
     return require('./store.prod');
   } else {

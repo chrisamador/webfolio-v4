@@ -1,21 +1,37 @@
-import React from 'react';
-
+// @flow
+import React, { PureComponent } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Link from 'gatsby-link';
 
 import '../styles/app.less';
-// import Symbols from '-!svg-react-loader!./symbols.svg';
+import Symbols from '-!svg-react-loader!../content/assets/icons/symbols.svg';
 
-// eslint-disable-next-line
-const Main = ({ children }) => (
-  <div className="app">
-    {/* <Header /> */}
-    <Link to="/" exact activeClassName="hello" activeStyle={{color: 'red'}}>Home</Link>
-    <Link to="/about" exact activeClassName="hello" activeStyle={{color: 'red'}}>About</Link>
-    {children()}
-    {/* <Footer /> */}
-  </div>
-);
+type PropType = {};
+type StateType = {};
+
+class Main extends PureComponent<PropType, StateType> {
+  state = {};
+  render(){
+    let {children} = this.props;
+    return (
+      <div className="app">
+        {Symbols ? <Symbols className="hidden-svg" /> : null}
+        <Header />
+        <div id="page" className="page page--in-view">
+          <div className="page__logo-area">
+            <Link to="/">
+              <h6 className="page__logo-text" style={{color: 'white'}}>
+                <span>Creative</span> Front-End Developer
+              </h6>
+            </Link>
+          </div>
+          {children()}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+}
 
 export default Main;

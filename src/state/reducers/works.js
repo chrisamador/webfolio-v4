@@ -5,8 +5,8 @@ const UPDATE_WORKS_DATA_SUCCESS = 'UPDATE_WORKS_DATA_SUCCESS',
   LOAD_WORKS_DATA_SUCCESS = 'LOAD_WORKS_DATA_SUCCESS';
 
 // REDUCER
-export default function worksReducer(state = initState.works, action){
-  switch(action.type){
+export default function worksReducer(state = initState.works, action) {
+  switch (action.type) {
     case UPDATE_WORKS_DATA_SUCCESS:
       return Object.assign({}, state, action.data);
     case LOAD_WORKS_DATA_SUCCESS:
@@ -18,12 +18,12 @@ export default function worksReducer(state = initState.works, action){
 
 // ACTIONS
 export class WorksStateActions {
-  static updateUserDataSuccess = (userData) => ({
+  static updateUserDataSuccess = userData => ({
     type: UPDATE_WORKS_DATA_SUCCESS,
     data: userData,
-  })
-  static loadUserDataSuccess = (userData) => ({
+  });
+  static loadUserDataSuccess = userData => ({
     type: LOAD_WORKS_DATA_SUCCESS,
     data: userData,
-  })
+  });
 }
