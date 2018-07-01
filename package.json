@@ -37,6 +37,7 @@
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-json": "^1.0.20",
     "gatsby-transformer-remark": "^1.7.44",
+    "query-string": "^6.1.0",
     "react-inview-monitor": "^2.2.0",
     "react-markdown": "^3.3.4",
     "react-redux": "^5.0.7",
