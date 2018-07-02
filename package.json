@@ -10,7 +10,8 @@
     "pretty": "prettier --write src/**/**/*.js",
     "pretty-watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "icons": "node tools/svg-icons.js",
-    "format": "npm run eslint && npm run pretty"
+    "format": "npm run eslint && npm run pretty",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.75.0",
     "onchange": "^4.0.0",
     "prettier": "1.13.5"
   }
