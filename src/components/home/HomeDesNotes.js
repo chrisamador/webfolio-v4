@@ -11,14 +11,18 @@ import Link from 'gatsby-link';
 import DesNotesPreview from '../lognotes/previews/DesnotePreview';
 import DesNotesPreviewMini from '../lognotes/previews/DesnotePreviewMini';
 
+import type {QueryContentLogsNotesType} from '../../pages/index';
+
 type PropType = {
   // desnotes: Array<DesNotesType>
+  desnotes: QueryContentLogsNotesType
 };
 type StateType = {};
 
 class HomeDesNotes extends PureComponent<PropType, StateType> {
   state = {};
   render(){
+
     return (
       <section className="home-des-notes">
         <div className="container">
@@ -29,25 +33,25 @@ class HomeDesNotes extends PureComponent<PropType, StateType> {
               <div className="text-intro">
                 <p>Des.Notes (Design Notes) are my thoughts on all things related to the design process. Occasionally I share things about trends, tools, design patterns, and anything interesting enough to share.</p>
               </div>
-              <Link style={{marginBottom: 40}} to="/logs-and-notes?view=notes" className="btn btn-ghost">View All</Link>
+              <Link style={{marginBottom: 40}} to="/logs-notes?view=notes" className="btn btn-ghost">View All</Link>
             </Col>
             <Col className="col-xs-12 col-sm-6 col-md-4">
-              <DesNotesPreview desnote={this.props.desnotes[0]} />
+              <DesNotesPreview desnote={this.props.desnotes.edges[0]} />
             </Col>
             <Col className="col-xs-12 col-sm-6 col-md-4">
-              <DesNotesPreview desnote={this.props.desnotes[1]} />
+              <DesNotesPreview desnote={this.props.desnotes.edges[1]} />
             </Col>
           </Row>
           <Row>
             {
-              this.props.desnotes.slice(2,4).map((desnote, index) => (
+              this.props.desnotes.edges.slice(2,4).map((desnote, index) => (
                 <Col className="col-xs-12 col-sm-6 col-md-3" key={index}>
                   <DesNotesPreviewMini desnote={desnote} />
                 </Col>
               ))
             }
             <Col className="col-xs-12 col-sm-6 col-md-3">
-              <Link to="/logs-and-notes?view=notes" className="devdes-more">
+              <Link to="/logs-notes?view=notes" className="devdes-more">
                 <div className="devdes-more__text">
                   <h5 className="text-subtitle">View All</h5>
                   <Icon id="icon-right-arrow" className="icon-more-arrow"/>

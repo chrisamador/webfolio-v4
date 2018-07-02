@@ -192,7 +192,7 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
                 })
               }
               <Col className="col-xs-12 col-sm-6 col-md-3">
-                <Link to={"/logs-and-notes?view=" + d(devdes.type)("viewmore")} className="devdes-more">
+                <Link to={"/logs-notes?view=" + d(devdes.type)("viewmore")} className="devdes-more">
                   <div className="devdes-more__text">
                     <h5 className="text-subtitle">View All</h5>
                     <Icon id="icon-right-arrow" className="icon-more-arrow"/>

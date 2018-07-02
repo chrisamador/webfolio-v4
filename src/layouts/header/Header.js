@@ -73,7 +73,7 @@ class Header extends PureComponent<PropType, StateType> {
             </li>
             <li>
               <Link
-                to="/logs-and-notes"
+                to="/logs-notes"
                 onClick={this.anchorClick}
                 activeClassName="active">
                 Logs & Notes <sup>{numLogs + numNotes}</sup>{' '}

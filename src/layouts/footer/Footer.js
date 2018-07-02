@@ -51,7 +51,7 @@ class Footer extends PureComponent<PropType, StateType> {
                   </li>
                   <li>
                     <Link
-                      to="/logs-and-notes"
+                      to="/logs-notes"
                       exact
                       onClick={this.anchorClick}
                       activeClassName="active">

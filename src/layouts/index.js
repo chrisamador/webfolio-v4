@@ -5,7 +5,7 @@ import Footer from './footer/Footer';
 import Link from 'gatsby-link';
 
 import '../styles/app.less';
-import Symbols from '-!svg-react-loader!../content/assets/icons/symbols.svg';
+import Symbols from '-!svg-react-loader!../assets/icons/symbols.svg';
 
 type PropType = {};
 type StateType = {};

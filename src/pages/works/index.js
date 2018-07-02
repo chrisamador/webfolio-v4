@@ -17,14 +17,11 @@ type StateType = {};
 
 class WorkPageList extends PureComponent<PropType, StateType> {
   state = {};
-  // componentWillMount(){
-  //   //"#B2727B"
-  //   this.props.dispatch(siteMetaActions.changeHeroColor("#66272E"))
-  // }
-  // componentDidMount(){
-  // }
-  // componentWillUnmount(){
-  // }
+  componentDidMount(){
+    // this.props.dispatch(siteMetaActions.changeHeroColor("#66272E"))
+  }
+  componentWillUnmount(){
+  }
   render(){
     return (
       <div className="works">

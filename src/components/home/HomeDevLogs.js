@@ -7,11 +7,14 @@ import Col from "../shared/layout/Col";
 import Row from "../shared/layout/Row";
 
 import Link from 'gatsby-link';
-import DevLogPreview from "../lognotes/previews/DevlogPreview";
-import DevlogPreviewMini from "../lognotes/previews/DevlogPreviewMini";
+import DevLogPreview from '../lognotes/previews/DevlogPreview';
+import DevlogPreviewMini from '../lognotes/previews/DevlogPreviewMini';
+
+import type {QueryContentLogsNotesType} from '../../pages/index.js';
 
 type PropType = {
   // devlogs: Array<DevLogType>
+  devlogs: QueryContentLogsNotesType
 };
 type StateType = {};
 
@@ -28,18 +31,18 @@ class HomeDevLogs extends PureComponent<PropType, StateType> {
               <div className="text-intro">
                 <p>Dev.Logs (Development Logs) are my thoughts on all things related to the development process. Occasionally I share things about build processes, tooling, javascript, productivity, and anything interesting enough to share.</p>
               </div>
-              <Link style={{marginBottom: 40}} to="/logs-and-notes?view=logs" className="btn btn-ghost">View All</Link>
+              <Link style={{marginBottom: 40}} to="/logs-notes?view=logs" className="btn btn-ghost">View All</Link>
             </Col>
             <Col className="col-xs-12 col-sm-6 col-md-4">
-              <DevLogPreview devlog={this.props.devlogs[0]} />
+              <DevLogPreview devlog={this.props.devlogs.edges[0]} />
             </Col>
             <Col className="col-xs-12 col-sm-6 col-md-4">
-              <DevLogPreview devlog={this.props.devlogs[1]} />
+              <DevLogPreview devlog={this.props.devlogs.edges[1]} />
             </Col>
           </Row>
           <Row>
             {
-              this.props.devlogs.slice(2,4).map((devlog, index) => (
+              this.props.devlogs.edges.slice(2,4).map((devlog, index) => (
                 <Col className="col-xs-12 col-sm-6 col-md-3" key={index}>
                   <DevlogPreviewMini devlog={devlog} />
                 </Col>
@@ -47,7 +50,7 @@ class HomeDevLogs extends PureComponent<PropType, StateType> {
             }
 
             <Col className="col-xs-12 col-sm-6 col-md-3">
-              <Link to="/logs-and-notes?view=logs" className="devdes-more">
+              <Link to="/logs-notes?view=logs" className="devdes-more">
                 <div className="devdes-more__text">
                   <h5 className="text-subtitle">View All</h5>
                   <Icon id="icon-right-arrow" className="icon-more-arrow"/>
