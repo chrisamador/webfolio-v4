@@ -2,7 +2,7 @@
 // import type {DevLogType, DesNotesType} from '../../../types/siteTypes';
 
 import React, { PureComponent } from "react";
-import {connect} from "react-redux";
+
 import queryString from "query-string";
 
 // import {siteMetaActions} from "../../../state/reducer/rootReducer";
@@ -15,9 +15,13 @@ import DesNotesPreviewMini from '../../components/lognotes/previews/DesnotePrevi
 import DevLogPreview from '../../components/lognotes/previews/DevlogPreview';
 import DevLogPreviewMini from '../../components/lognotes/previews/DevlogPreviewMini';
 
+import type {QueryContentLogsNotesType} from '../index';
+
 type PropType = {
-  // devlogs: Array<DevLogType>,
-  // desnotes: Array<DesNotesType>
+  data: {
+    logs: QueryContentLogsNotesType,
+    notes: QueryContentLogsNotesType
+  }
 };
 
 type StateType = {
@@ -52,13 +56,13 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
 
     switch (this.state.view) {
       case 'both':
-        list = [...this.props.devlogs,...this.props.desnotes];
+        list = [...this.props.data.logs.edges, ...this.props.data.notes.edges];
         break;
       case 'logs':
-        list = this.props.devlogs;
+        list = this.props.data.logs.edges;
         break;
       case 'notes':
-        list = this.props.desnotes;
+        list = this.props.data.notes.edges;
         break;
     }
     return (
@@ -84,13 +88,13 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
             <div className="devdes__hero-options text-center">
               <button
                 className={"btn btn-ghost" + (this.state.view === "both"? " is-active": "")}
-                onClick={this.handleChangeView("both")}>Both ({this.props.devlogs.length + this.props.desnotes.length})</button>
+                onClick={this.handleChangeView("both")}>Both ({this.props.data.logs.totalCount + this.props.data.notes.totalCount})</button>
               <div className="u-sm-d-ib u-sm-ml-s"> <button
                 className={"btn btn-ghost" + (this.state.view === "logs"? " is-active": "")}
-                onClick={this.handleChangeView("logs")}>Dev.Logs ({this.props.devlogs.length}) </button>
+                onClick={this.handleChangeView("logs")}>Dev.Logs ({this.props.data.logs.totalCount}) </button>
               <button
                 className={"btn btn-ghost" + (this.state.view === "notes"? " is-active": "")}
-                onClick={this.handleChangeView("notes")}>Des.Notes ({this.props.desnotes.length}) </button>
+                onClick={this.handleChangeView("notes")}>Des.Notes ({this.props.data.notes.totalCount}) </button>
               </div>
             </div>
           </div>
@@ -100,14 +104,14 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
             <Row>
               {
                 list && list.slice(0, 6).map((d) => {
-                  switch (d.type) {
-                    case "devlog": return (
-                      <Col className="col-xs-12 col-sm-4" key={d.slug}>
+                  switch (d.node.fields.type) {
+                    case 'log': return (
+                      <Col className="col-xs-12 col-sm-4" key={d.node.fields.slug}>
                         <DevLogPreview devlog={d}/>
                       </Col>
                     );
-                    case "desnote": return (
-                      <Col className="col-xs-12 col-sm-4" key={d.slug} >
+                    case 'note': return (
+                      <Col className="col-xs-12 col-sm-4" key={d.node.fields.slug} >
                         <DesNotesPreview desnote={d}/>
                       </Col>
                     );
@@ -118,14 +122,14 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
             <Row>
               {
                 list && list.slice(6).map((d) => {
-                  switch (d.type) {
-                    case "devlog": return (
-                      <Col className="col-xs-12 col-sm-3" key={d.slug}>
+                  switch (d.node.fields.type) {
+                    case 'log': return (
+                      <Col className="col-xs-12 col-sm-3" key={d.node.fields.slug}>
                         <DevLogPreviewMini devlog={d}/>
                       </Col>
                     );
-                    case "desnote": return (
-                      <Col className="col-xs-12 col-sm-3" key={d.slug} >
+                    case 'note': return (
+                      <Col className="col-xs-12 col-sm-3" key={d.node.fields.slug} >
                         <DesNotesPreviewMini desnote={d}/>
                       </Col>
                     );
@@ -136,12 +140,62 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
           </div>
         </div>
       </div>
-
     );
   }
 }
 
-export default connect((state) => ({
-  devlogs: [],
-  desnotes: []
-}))(LogNotesPageList);
+export default LogNotesPageList
+
+// eslint-disable-next-line
+export const query = graphql`
+  query WorkQuery {
+    logs: allMarkdownRemark(filter: {fields: {type: {eq: "log"}}}, limit: 3){
+      totalCount
+      edges{
+        node{
+          fields{
+            slug
+            type
+          }
+          html
+          frontmatter{
+            title
+            tags
+            image_main
+            meta {
+              date
+              primary_color
+              type_of
+              min_read
+              exp
+            }
+          }
+        }
+      }
+    }
+    notes: allMarkdownRemark(filter: {fields: {type: {eq: "note"}}}, limit: 3){
+      totalCount
+       edges{
+         node{
+           fields{
+             slug
+             type
+           }
+           html
+           frontmatter{
+             title
+             tags
+             image_main
+             meta {
+               date
+               primary_color
+               type_of
+               min_read
+               exp
+             }
+           }
+         }
+       }
+    }
+  }
+`;

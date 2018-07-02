@@ -62,9 +62,10 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         }
         if(node.fields.type === 'work'){
           componentName = 'WorkPageSingle.js';
+          componentName = 'JustATest.js';
         }
 
-        componentName = 'JustATest.js';
+
 
         createPage({
           path: node.fields.slug,
@@ -72,6 +73,8 @@ exports.createPages = ({graphql, boundActionCreators}) => {
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
             slug: node.fields.slug,
+            related: {testing: true},
+            next: {testing: true}
           },
         });
       });

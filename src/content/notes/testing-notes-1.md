@@ -2,7 +2,7 @@
 title: Testing notes 1
 image_main: https://res.cloudinary.com/camador/image/upload/v1525135371/webfolio/deslog-2018-4-8.jpg
 tags:
-  - react
+  - Design
 meta: {
   date: "1519880400000",
   primary_color: teal,

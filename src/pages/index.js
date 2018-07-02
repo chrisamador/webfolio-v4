@@ -77,7 +77,7 @@ export type QueryLogsNotesSingleType = {
     html: string,
     fields: {
       slug: string,
-      type: string
+      type: 'log' | 'note'
     },
     frontmatter: {
       title: string,

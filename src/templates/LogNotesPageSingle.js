@@ -1,33 +1,33 @@
 // @flow
-import type {DevLogType, DesNotesType} from '../../../types/siteTypes';
+import React, { PureComponent } from 'react';
 
-import React, { PureComponent } from "react";
-import {connect} from "react-redux";
-import {Link} from 'react-router-dom';
-import {siteMetaActions, userActions} from '../../../state/reducer/rootReducer';
-import Icon from '../../common/Icon';
-import Col from '../../common/layout/Col';
-import Row from '../../common/layout/Row';
-import DesNotesPreviewMini from './previews/DesnotePreviewMini';
-import DevLogPreviewMini from "./previews/DevlogPreviewMini";
-import dateFormater from '../../common/ults/dateFormater';
-import FunShapes from '../../common/FunShapes';
+import Link from 'gatsby-link';
+
+import Icon from '../components/shared/Icon';
+import Col from '../components/shared/layout/Col';
+import Row from '../components/shared/layout/Row';
+
+import DesNotesPreviewMini from '../components/lognotes/previews/DesnotePreviewMini';
+import DevLogPreviewMini from '../components/lognotes/previews/DevlogPreviewMini';
+import dateFormater from '../components/shared/ults/dateFormater';
+
+import FunShapes from '../components/shared/FunShapes';
 
 const ref = {
   logo_subtitle: {
-    devlog: () => ("Dev + How Tos + Thoughts"),
-    desnote: () => ("Desing + How Tos + Thoughts")
+    log: () => ('Dev + How Tos + Thoughts'),
+    note: () => ('Desing + How Tos + Thoughts')
   },
   logo_title: {
-    devlog: () => "Dev.Logs",
-    desnote: () => "Des.Notes"
+    log: () => 'Dev.Logs',
+    note: () => 'Des.Notes'
   },
   viewmore: {
-    devlog: () => "logs",
-    desnote: () => "notes"
+    log: () => 'logs',
+    note: () => 'notes'
   },
   heroTitle: {
-    devlog: function heroTitle ({title, date}) {
+    log: function heroTitle ({title, date}) {
       return (
         <Row>
           <Col className="col-sm-7">
@@ -38,9 +38,9 @@ const ref = {
           </Col>
         </Row>
 
-      )
+      );
     },
-    desnote: function heroTitle ({title, date}) {
+    note: function heroTitle ({title, date}) {
       return (
         <div className="devdes-single__des-title">
           <h1>{title}</h1>
@@ -48,8 +48,8 @@ const ref = {
         </div>
 
       );
-    }
-  }
+    },
+  },
 };
 
 const d = (type) => (item, opts) => {
@@ -57,67 +57,73 @@ const d = (type) => (item, opts) => {
     return ref[item][type](opts);
 
   }catch(error){
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 type PropType = {
-  devdes: DevLogType | DesNotesType,
-  related: Array<DevLogType> | Array<DesNotesType>
+  pathContext: {
+    slug: string,
+    next: {},
+    related: Array<{}>
+  },
+  data: {
+    devdes: MatchedLogsNotesSingleType
+  }
 };
 type StateType = {};
 
 class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   state = {};
-  componentWillMount(){
-    this.props.dispatch(siteMetaActions.changeHeroColor("#66272E"));
-  }
-  componentDidMount(){
-    this.confirmRead(this.props);
-  }
-  componentWillReceiveProps(nextProps){
-    this.confirmRead(nextProps);
-  }
+  // componentWillMount(){
+  //   this.props.dispatch(siteMetaActions.changeHeroColor("#66272E"));
+  // }
+  // componentDidMount(){
+  //   this.confirmRead(this.props);
+  // }
+  // componentWillReceiveProps(nextProps){
+  //   this.confirmRead(nextProps);
+  // }
   confirmRead(props){
     let action;
-    switch (props.devdes.type) {
-      case "devlog":
+    switch (props.data.devdes.fields.type) {
+      case "log":
         action = userActions.changeLogsReadStatus(props.devdes.slug, true);
         break;
-      case "desnote":
+      case "note":
         action = userActions.changeNotesReadStatus(props.devdes.slug, true);
         break;
     }
     if(action) this.props.dispatch(action);
   }
   render(){
-    let {devdes, related} = this.props;
-    let formatDate = dateFormater(devdes.meta.date);
-
+    let {devdes} = this.props.data;
+    let formatDate = dateFormater(devdes.frontmatter.meta.date);
+    // debugger;
     return (
-      <div className={"devdes-single is-" + devdes.type + " is-color-" + devdes.meta.primary_color}>
+      <div className={"devdes-single is-" + devdes.fields.type + " is-color-" + devdes.frontmatter.meta.primary_color}>
         <FunShapes strokeColor="#E8E2D7" style={{zIndex: -1}}/>
         <div className="devdes-single__logo">
           <div className="devdes-logo">
-            <div className="devdes-logo__subtitle">{d(devdes.type)("logo_subtitle")}</div>
-            <div className="devdes-logo__title">{d(devdes.type)("logo_title")}</div>
+            <div className="devdes-logo__subtitle">{d(devdes.fields.type)("logo_subtitle")}</div>
+            <div className="devdes-logo__title">{d(devdes.fields.type)("logo_title")}</div>
           </div>
         </div>
         <div className="devdes-single__hero">
           <div className="container is-position">
-            {d(devdes.type)("heroTitle", {
-              title: devdes.title,
+            {d(devdes.fields.type)('heroTitle', {
+              title: devdes.frontmatter.title,
               date: formatDate
             })}
-            { devdes.type === "devlog" &&
-              (devdes.images.main_id
+            { devdes.fields.type === 'log' &&
+              (devdes.frontmatter.image_id
                 ? (<div>
                   <Icon id={devdes.images.type} className="icon-devlog" style={{top: 50, right: 100}}/>
                   <Icon id={devdes.images.main_id} className="icon-devlog-large" style={{top: 60, right: 100}}/>
                 </div>
                 )
                 :(
-                  <Icon id={devdes.images.type} className="icon-devlog" style={{top: 50, right: 100}}/>
+                  <Icon id="icon-logo-react" className="icon-devlog" style={{top: 50, right: 100}}/>
                 ))
             }
           </div>
@@ -130,25 +136,25 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
                 <Col className="col-xs-6 col-sm-3">
                   <div className="devdes-meta__single">
                     <h6>Typeof</h6>
-                    <h5>{devdes.meta.type_of}</h5>
+                    <h5>{devdes.frontmatter.meta.type_of}</h5>
                   </div>
                 </Col>
                 <Col className="col-xs-6 col-sm-3">
                   <div className="devdes-meta__single">
                     <h6>Minute Read</h6>
-                    <h5>{devdes.meta.min_read}</h5>
+                    <h5>{devdes.frontmatter.meta.min_read}</h5>
                   </div>
                 </Col>
                 <Col className="col-xs-6 col-sm-3">
                   <div className="devdes-meta__single">
                     <h6>Topic</h6>
-                    <h5>{devdes.tags[0]}</h5>
+                    <h5>{devdes.frontmatter.tags[0]}</h5>
                   </div>
                 </Col>
                 <Col className="col-xs-6 col-sm-3">
                   <div className="devdes-meta__single">
                     <h6>Min Exp</h6>
-                    <h5>{devdes.meta.exp}</h5>
+                    <h5>{devdes.frontmatter.meta.exp}</h5>
                   </div>
                 </Col>
               </Row>
@@ -157,16 +163,12 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
         </div>
         <div className="devdes-single__content">
           <div className="container">
-            <div className={"devdes-single__content-inner is-" + devdes.type}>
-              {
-                Object.keys(devdes.content).map((key) => {
-                  return (
-                    <Row key={key} className="devdes-single__content-section">
-                      <Col className="col-sm-offset-2 col-sm-8"><p>{devdes.content[key]}</p></Col>
-                    </Row>
-                  )
-                })
-              }
+            <div className={'devdes-single__content-inner is-' + devdes.fields.type}>
+              <Row className="devdes-single__content-section">
+                <Col className="col-sm-offset-2 col-sm-8">
+                  <div dangerouslySetInnerHTML={{__html: devdes.html}}></div>
+                </Col>
+              </Row>
             </div>
           </div>
         </div>
@@ -175,24 +177,24 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
           <div className="container">
             <h5 className="devdes-single__related-title">Related</h5>
             <Row>
-              {
+              {/*
                 related && related.slice(0,3).map((d) => {
                   switch (d.type) {
-                    case "devlog": return (
+                    case "log": return (
                       <Col className="col-xs-12 col-sm-6 col-md-3" key={d.slug}>
                         <DevLogPreviewMini devlog={d}/>
                       </Col>
                     );
-                    case "desnote": return (
+                    case "note": return (
                       <Col className="col-xs-12 col-sm-6 col-md-3" key={d.slug} >
                         <DesNotesPreviewMini desnote={d}/>
                       </Col>
                     );
                   }
-                })
+                })*/
               }
               <Col className="col-xs-12 col-sm-6 col-md-3">
-                <Link to={"/logs-notes?view=" + d(devdes.type)("viewmore")} className="devdes-more">
+                <Link to={"/logs-notes?view=" + d(devdes.fields.type)("viewmore")} className="devdes-more">
                   <div className="devdes-more__text">
                     <h5 className="text-subtitle">View All</h5>
                     <Icon id="icon-right-arrow" className="icon-more-arrow"/>
@@ -207,22 +209,49 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   }
 }
 
-export default connect((state, ownProps) => {
-  let slug = ownProps.match.params.slug,
-    devdes, related;
+export default LogNotesPageListSingle
 
-  devdes = state.logs.find((log) => (log.slug === slug));
-  if(devdes) related = state.logs;
-
-  if(!devdes){
-    devdes = state.notes.find((log) => (log.slug === slug));
-    related = state.notes;
+export type MatchedLogsNotesSingleType = {
+  html: string,
+  fields: {
+    slug: string,
+    type: 'log' | 'note'
+  },
+  frontmatter: {
+    title: string,
+    tags: string,
+    image_main: string,
+    meta: {
+      date: string,
+      primary_color: string,
+      type_of: string,
+      min_read: string,
+      exp: string
+    }
   }
+}
 
-  if(!devdes) devdes = {error: "not found"};
-
-  return {
-    devdes,
-    related
-  };
-})(LogNotesPageListSingle);
+// eslint-disable-next-line
+export const query = graphql`
+  query LogNotesPageListSingleQuery($slug: String!) {
+    devdes: markdownRemark(fields: { slug: { eq: $slug } }) {
+      fields{
+        slug
+        type
+      }
+      html
+      frontmatter{
+        title
+        tags
+        image_main
+        meta {
+          date
+          primary_color
+          type_of
+          min_read
+          exp
+        }
+      }
+    }
+  }
+`;
