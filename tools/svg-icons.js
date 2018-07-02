@@ -38,7 +38,7 @@ const template = `
   </html>
 `;
 
-let svgRawFolder = 'src/content/assets/icons/raw/*.svg',
+let svgRawFolder = 'src/assets/icons/raw/*.svg',
   svgSymbols;
 
 let svgo = new SVGO({
@@ -85,11 +85,11 @@ Promise.all(cleanSvgPromises.map(p => p.catch(e => e)))
 
 
     fs.writeFileSync(
-      path.resolve(__dirname, '../', 'src/content/assets/icons/symbols.svg'),
+      path.resolve(__dirname, '../', 'src/assets/icons/symbols.svg'),
       svgSymbols
     );
     fs.writeFileSync(
-      path.resolve(__dirname, '../', 'src/content/assets/icons/symbols.html'),
+      path.resolve(__dirname, '../', 'src/assets/icons/symbols.html'),
       ejs.render(template, {
         svgSymbols: svgSymbols.element.html(),
         icons: cleanSvgArry.map(({filepath}) => {
@@ -102,7 +102,7 @@ Promise.all(cleanSvgPromises.map(p => p.catch(e => e)))
 
 // console.log(files);
 //
-// imagemin(['src/content/assets/icons/raw/*.svg'], 'src/content/assets/icons/clean', {
+// imagemin(['src/assets/icons/raw/*.svg'], 'src/assets/icons/clean', {
 //   use: [
 //     imageminSvgo({
 //       plugins: [
