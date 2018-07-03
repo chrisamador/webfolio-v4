@@ -105,6 +105,7 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   }
   render(){
     let {devdes} = this.props.data;
+    debugger;
     let {related} = this.props.pathContext;
     let formatDate = dateFormater(devdes.frontmatter.date);
     // debugger;
