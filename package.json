@@ -29,6 +29,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
     "bezier-easing": "^2.1.0",
+    "bootstrap": "3.3.7",
     "color": "^3.0.0",
     "ejs": "^2.6.1",
     "gatsby": "^1.9.272",

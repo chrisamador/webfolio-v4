@@ -24,6 +24,117 @@ Real connections are not that simple. Depending on your location, network condit
 
 What if there was a way to adapt websites based on our users connections, just like we do for varying display widths and browser capabilities? [The Network Information API](https://wicg.github.io/netinfo/) might enable us to do so.
 
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+Alt-H1
+======
+
+Alt-H2
+------
+
+Emphasis, aka italics, with *asterisks* or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+
+1. First ordered list item
+2. Another item
+  * Unordered sub-list.
+1. Actual numbers don't matter, just that it's a number
+  1. Ordered sub-list
+4. And another item.  
+
+   Some text that should be aligned with the above item.
+
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
+
+## Links
+
+[I'm an inline-style link](https://www.google.com)
+
+[I'm a reference-style link][Arbitrary case-insensitive reference text]
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself]
+
+URLs and URLs in angle brackets will automatically get turned into links.
+http://www.example.com or <http://www.example.com> and sometimes
+example.com (but not on Github, for example).
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
+[1]: http://slashdot.org
+[link text itself]: http://www.reddit.com
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```
+No language indicated, so no syntax highlighting.
+But let's throw in a <b>tag</b>.
+```
+
+### Tables
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+### Blockquotes
+
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy
+
+### HR
+
+Three or more...
+
+---
+
+Hyphens
+
+***
+
+Asterisks
+
+___
+
+Underscores
+
 ## The Network Information API
 
 This API is an editor’s draft by the WICG and currently available in Chrome. It can be accessed through the read-only property `navigator.connection` [(MDN)](https://google.com), which exposes several properties that provide information about a user’s current connection:
@@ -42,6 +153,22 @@ This is a combined estimation of the network quality, based on the round-trip ti
 
 There is also an Event Listener available on the connection property that fires whenever a change in the network quality is detected:
 
+### Responding to Changes
+
+There is also an Event Listener available on the connection property that fires whenever a change in the network quality is detected:
+
+#### Responding to Changes
+
+There is also an Event Listener available on the connection property that fires whenever a change in the network quality is detected:
+
+##### Responding to Changes
+
+There is also an Event Listener available on the connection property that fires whenever a change in the network quality is detected:
+
+###### Responding to Changes
+
+There is also an Event Listener available on the connection property that fires whenever a change in the network quality is detected:
+
 ```
 function onConnectionChange() {
     const { rtt, downlink, effectiveType } = navigator.connection
@@ -54,7 +181,7 @@ navigator.connection.addEventListener('change', onConnectionChange)
 
 ## Support
 
-[categories image](./categories.png 'Hover text goes here')
+[categories image](./images/categories.png 'Hover text goes here')
 
  👉 Be aware that all of this is still experimental. Only Chrome and Samsung Internet browsers have currently implemented the API. It’s a very good candidate for progressive enhancement though - and support for other platforms is [on the way](https://google.com).
 

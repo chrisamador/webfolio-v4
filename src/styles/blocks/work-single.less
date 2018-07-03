@@ -110,6 +110,12 @@
   text-decoration: none;
   background-size: 100%;
   position: relative;
+  color: @brand-tan-dark;
+
+  &:hover,
+  &:focus{
+    text-decoration: none;
+  }
 
   @media @min-sm{
     padding: @spacing-large;
@@ -153,7 +159,11 @@
 
   h6{
     color: @brand-tan;
-    margin-bottom: @spacing-small;
+    margin: @spacing-small 0;
+  }
+
+  h3{
+    margin: @spacing-small 0;
   }
 
   .icon{

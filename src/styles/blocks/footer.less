@@ -15,6 +15,9 @@
 
 .footer-nav{
   color: white;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   @media @min-sm{
     margin-bottom: @spacing-large;
@@ -33,6 +36,7 @@
     text-decoration: none;
     display: inline-block;
     position: relative;
+    color: inherit;
 
     &:hover,
     &:focus{
@@ -44,7 +48,7 @@
   sup{
     opacity: .5;
     position: absolute;
-    top: -8px;
+    top: -4px;
     right: -8px;
   }
 }
@@ -75,4 +79,8 @@
 
 .footer__copyright{
   // margin-bottom: @spacing-small;
+
+  h6{
+    margin: 0;
+  }
 }

@@ -26,7 +26,7 @@ h6 a,
 h1,.h1 {
 	font-size: @h1-fontsize - 10;
 	line-height: 110%;
-	margin: 0 0 (@h1-fontsize / 2.5) 0;
+	margin: 0 0 (@spacing) 0;
   font-weight: 600;
 
 	@media @min-sm{
@@ -36,7 +36,7 @@ h1,.h1 {
 h2,.h2 {
 	font-size: @h2-fontsize - 10;
 	line-height: 110%;
-	margin: (@h2-fontsize / 2) 0 (@h2-fontsize / 2.5) 0;
+	margin: (@spacing) 0 (@spacing-small) 0;
 
 	@media @min-sm{
 		font-size: @h2-fontsize;
@@ -45,35 +45,33 @@ h2,.h2 {
 h3,.h3 {
 	font-size: @h3-fontsize;
 	line-height: 110%;
-	margin: (@h3-fontsize / 2) 0 (@h3-fontsize / 2.5) 0;
-	font-weight: normal;
+	margin: (@spacing) 0 (@spacing-small) 0;
+	// font-weight: normal;
 }
 h4,.h4 {
 	font-size: @h4-fontsize;
 	line-height: 110%;
-	margin: (@h4-fontsize / 2) 0 (@h4-fontsize / 2.5) 0;
-	text-transform: uppercase;
-	letter-spacing: 7px;
+	margin: (@spacing) 0 (@spacing-small) 0;
+
 }
 h5,.h5 {
 	font-size: @h5-fontsize;
 	line-height: 110%;
-	margin: (@h5-fontsize / 2) 0 (@h5-fontsize / 2.5) 0;
+	margin: (@spacing) 0 (@spacing-xsmall) 0;
 	text-transform: uppercase;
 	letter-spacing: 4px;
 }
 h6,.h6 {
 	font-size: @h6-fontsize;
 	line-height: 110%;
-  margin: (@h6-fontsize / 2) 0 (@h6-fontsize / 2.5) 0;
+  margin: (@spacing) 0 (@spacing-xsmall) 0;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 600;
-
 }
 
 p{
-	margin-bottom: @spacing-xsmall;
+	margin-bottom: @spacing-small;
 }
 
 .ultra-small {
@@ -162,7 +160,7 @@ strong, b{
 }
 
 a{
-	color: inherit;
+	// color: inherit;
 }
 
 .text-white{
@@ -170,7 +168,6 @@ a{
 }
 
 sup{
-	font-size: 50%;
 	vertical-align: super;
 }
 
@@ -183,14 +180,18 @@ sup{
 .text-subtitle{
 	color: @brand-tan;
 	letter-spacing: 4px;
+	margin: @spacing-small 0;
 }
 
 .text-section-title{
 	color: @brand-black;
+	text-transform: uppercase;
+	letter-spacing: 7px;
+	margin: @spacing-small 0;
 }
 
 .text-intro{
-	margin-top: @spacing;
+	margin-top: @spacing-small;
 	margin-bottom: @spacing-small;
 }
 

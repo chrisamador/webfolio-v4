@@ -23,7 +23,7 @@ class HomeHero extends PureComponent<PropType, StateType> {
           <h1 className="home-hero__title">Hello</h1>
           <Row>
             <Col className="col-xs-12 col-sm-9">
-              <h3 className="home-hero__subtitle">Im <Link to="/about">Chris Amador</Link></h3>
+              <h3 className="home-hero__subtitle">I&#8217;m <Link to="/about">Chris Amador</Link></h3>
               <div className="home-hero__bio">
                 <p>I Make [Cool] Things on The Internet</p>
               </div>

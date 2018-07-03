@@ -1,5 +1,6 @@
 .btn{
   .h6();
+  margin: 0;
   display: inline-block;
   text-transform: uppercase;
   font-size: @font-size-small;
@@ -14,6 +15,11 @@
 
   &+.btn{
     margin-left: @spacing-small;
+  }
+
+  &:hover,
+  &:focus{
+    text-decoration: none;
   }
 }
 

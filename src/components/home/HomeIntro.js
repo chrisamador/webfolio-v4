@@ -22,7 +22,7 @@ class HomeIntro extends PureComponent<PropType, StateType> {
             <h6>Among the many things I love to do,</h6>
             <h2 className="home-intro__title">I Design <span className="text-group">& Code</span></h2>
             <h3>Websites, Brands, <span className="text-group">Apps, and Prints</span></h3>
-            <div style={{marginTop: 40}}>
+            <div>
               <Link to="/works" className="btn btn-ghost-light">View Works</Link>
               <h6 className="home-intro__or">or</h6>
               <a href="#" className="btn btn-ghost-light">Contact Me</a>

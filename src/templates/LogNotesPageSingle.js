@@ -105,7 +105,6 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   }
   render(){
     let {devdes} = this.props.data;
-    debugger;
     let {related} = this.props.pathContext;
     let formatDate = dateFormater(devdes.frontmatter.date);
     // debugger;
@@ -147,29 +146,33 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
           <div className="container">
             <div className="devdes-meta">
               <Row>
-                <Col className="col-xs-6 col-sm-3">
-                  <div className="devdes-meta__single">
-                    <h6>Typeof</h6>
-                    <h5>{devdes.frontmatter.meta.type_of}</h5>
-                  </div>
-                </Col>
-                <Col className="col-xs-6 col-sm-3">
-                  <div className="devdes-meta__single">
-                    <h6>Minute Read</h6>
-                    <h5>{devdes.frontmatter.meta.min_read}</h5>
-                  </div>
-                </Col>
-                <Col className="col-xs-6 col-sm-3">
-                  <div className="devdes-meta__single">
-                    <h6>Topic</h6>
-                    <h5>{devdes.frontmatter.tags[0]}</h5>
-                  </div>
-                </Col>
-                <Col className="col-xs-6 col-sm-3">
-                  <div className="devdes-meta__single">
-                    <h6>Min Exp</h6>
-                    <h5>{devdes.frontmatter.meta.exp}</h5>
-                  </div>
+                <Col className="col-sm-offset-1 col-sm-10">
+                  <Row>
+                    <Col className="col-xs-6 col-sm-3">
+                      <div className="devdes-meta__single">
+                        <h6>Typeof</h6>
+                        <h5>{devdes.frontmatter.meta.type_of}</h5>
+                      </div>
+                    </Col>
+                    <Col className="col-xs-6 col-sm-3">
+                      <div className="devdes-meta__single">
+                        <h6>Minute Read</h6>
+                        <h5>{devdes.frontmatter.meta.min_read}</h5>
+                      </div>
+                    </Col>
+                    <Col className="col-xs-6 col-sm-3">
+                      <div className="devdes-meta__single">
+                        <h6>Topic</h6>
+                        <h5>{devdes.frontmatter.tags[0]}</h5>
+                      </div>
+                    </Col>
+                    <Col className="col-xs-6 col-sm-3">
+                      <div className="devdes-meta__single">
+                        <h6>Min Exp</h6>
+                        <h5>{devdes.frontmatter.meta.exp}</h5>
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </div>
@@ -178,11 +181,13 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
         <div className="devdes-single__content">
           <div className="container">
             <div className={'devdes-single__content-inner is-' + devdes.fields.type}>
-              <Row className="devdes-single__content-section">
-                <Col className="col-sm-offset-2 col-sm-8">
-                  <div dangerouslySetInnerHTML={{__html: devdes.html}}></div>
-                </Col>
-              </Row>
+              <div className="devdes-single__content-section">
+                <Row>
+                  <Col className="col-sm-offset-1 col-sm-10">
+                    <div dangerouslySetInnerHTML={{__html: devdes.html}}></div>
+                  </Col>
+                </Row>
+              </div>
             </div>
           </div>
         </div>

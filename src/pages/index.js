@@ -143,7 +143,7 @@ export const query = graphql`
     logs: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {fields: {type: {eq: "log"}}}
-      limit: 3
+      limit: 5
       ){
       totalCount
       edges{
@@ -175,7 +175,7 @@ export const query = graphql`
     notes: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {fields: {type: {eq: "note"}}}
-      limit: 3
+      limit: 5
       ){
       totalCount
        edges{

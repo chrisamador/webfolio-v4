@@ -215,8 +215,8 @@ class FunShapes extends PureComponent<PropType, StateType> {
         shape.draw();
       });
     }
-    if(this.shapes.length)
-      this.timeoutID = setTimeout(() => {requestAnimationFrame(this.drawShapes)}, 1000/30);
+    if(this.shapes.length){}
+      //this.timeoutID = setTimeout(() => {requestAnimationFrame(this.drawShapes)}, 1000/30);
   }
   isInView = () => {
     return this.canvas && this.canvas.getBoundingClientRect().bottom >= 0;

@@ -26,16 +26,24 @@
   display: inline-block;
   margin-bottom: @spacing;
   text-decoration: none;
+
+  &:hover{
+    text-decoration: none;
+  }
 }
 
 .devdes-logo__subtitle{
   .h6();
   color: @brand-tan;
+  margin: 0;
 }
 
 .devdes-logo__title{
   .h4();
   .text-section-title();
+  margin: @spacing-small 0;
+  text-transform: uppercase;
+  letter-spacing: 7px;
 }
 
 .devdes__list{
@@ -176,7 +184,11 @@
   color: white;
   padding: @spacing-small;
   h6{
-    opacity: .5;
+    opacity: .75;
+    margin: 0;
+  }
+  h1{
+    margin-bottom: @spacing-small;
   }
 }
 
@@ -203,13 +215,10 @@
 // Meta
 
 .devdes-meta{
-  max-width: 650px;
-  margin: 0 auto;
+  // max-width: 650px;
+  // margin: 0 auto;
   margin-bottom: @spacing-small;
 
-  @media @min-sm{
-    margin-bottom: @spacing-medium;
-  }
 }
 
 .devdes-meta__single{
@@ -217,10 +226,12 @@
 
   h6{
     color: @brand-tan;
+    margin: @spacing-small 0;
   }
 
   h5{
     color: @brand-tan-dark;
+    margin: @spacing-small 0;
   }
 }
 
@@ -229,7 +240,7 @@
 .devdes-single__content-inner{
   background-color: white;
   margin-bottom: @spacing-large;
-  padding: @spacing-large @spacing;
+  padding: @spacing-large 0;
 }
 
 .devdes-single__content-section{
