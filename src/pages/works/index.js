@@ -3,28 +3,35 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux';
 import FunShapes from '../../components/shared/FunShapes';
 import Icon from '../../components/shared/Icon';
-import WorkList from '../../components/work/WorkList';
+import WorkSingle from '../../components/work/WorkSingle';
+import Seo from '../../components/shared/Seo';
+import {SiteMetaActions} from '../../state/reducers/siteMeta';
 
-// import {siteMetaActions} from "../../../state/reducer/rootReducer";
-
-// import type {WorkType} from "../../../types/siteTypes";
+import type {QueryContentWorksType} from '../index';
 
 type PropType = {
   // works: Array<WorkType>,
-  user: {/*TODO: Fill this out*/}
+  user: {/*TODO: Fill this out*/},
+  data: {
+    works: QueryContentWorksType
+  }
 };
 type StateType = {};
 
 class WorkPageList extends PureComponent<PropType, StateType> {
   state = {};
   componentDidMount(){
-    // this.props.dispatch(siteMetaActions.changeHeroColor("#66272E"))
+    this.props.dispatch(SiteMetaActions.updateSiteMetaColor('#66272E'))
   }
   componentWillUnmount(){
   }
   render(){
+    console.log(this.props);
     return (
       <div className="works">
+        <Seo
+          title="Works"
+          url={this.props.pageResources ? this.props.pageResources.page.path : null}/>
         <div className="works-hero">
           <FunShapes strokeColor="#E8E2D7" />
           <div className="container is-position">
@@ -41,14 +48,49 @@ class WorkPageList extends PureComponent<PropType, StateType> {
           </div>
         </div>
         <section className="works-work-list">
-          <WorkList works={this.props.works} user={this.props.user}/>
+          {this.props.data.works.edges.map((work) => (
+            <WorkSingle
+              key={work.node.fields.slug}
+              work={work}/>
+          ))}
         </section>
       </div>
     );
   }
 }
 
-export default connect((state) => ({
-  works: [],
-  user: {}
+export default connect(() => ({
 }))(WorkPageList);
+
+// eslint-disable-next-line
+export const query = graphql`
+  query WorkPageQuery {
+    works: allMarkdownRemark(filter: {fields: {type: {eq: "work"}}} ){
+      totalCount
+      edges{
+       node{
+         fields{
+           slug
+           type
+         }
+         html
+         frontmatter{
+           title
+           primary_color
+           preview
+           meta {
+             role
+             date
+             client
+             scope
+           }
+           images {
+             bg
+             preview
+           }
+         }
+       }
+     }
+    }
+  }
+`;

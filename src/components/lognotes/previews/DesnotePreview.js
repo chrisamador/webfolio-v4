@@ -19,11 +19,11 @@ class DesNotesPreview extends PureComponent<PropType, StateType> {
     let {desnote} = this.props;
 
     if(!desnote);
-    let formatDate = dateFormater(desnote.node.frontmatter.meta.date);
+    let formatDate = dateFormater(desnote.node.frontmatter.date);
 
     return (
       <Link to={desnote.node.fields.slug} className={'desnotes-preview is-color-' + desnote.node.frontmatter.meta.primary_color}
-        style={{backgroundImage: `url(${desnote.node.frontmatter.image_main})`}}>
+        style={{backgroundImage: `url(${desnote.node.frontmatter.images.main_url})`}}>
         <div className="desnotes-preview__meta">
           {
             desnote.node.frontmatter.tags.map((tag) => (

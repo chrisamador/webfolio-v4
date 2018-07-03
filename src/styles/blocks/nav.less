@@ -1,8 +1,35 @@
+.nav-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: @zindex-navbar;
+  transition: top 750ms ease;
+
+  // height: 80px;
+  // background-color: rgba(102, 39, 46, 0.5);
+
+  @media @min-sm{
+
+  }
+
+  &:after{
+    content: "";
+    position: fixed;
+    left: 40px;
+    width: 1px;
+    background-color: @brand-gray;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
+}
+
 // Controll scrolled styles
-.app-is-scrolled .nav-header{
+.nav-header.has-scrolled{
   // Show thin line
   &:after{
-
     @media @min-sm{
       opacity: .25;
       visibility: visible;
@@ -47,6 +74,16 @@
   }
 }
 
+.nav-header.has-scrolled.has-floating-nav-active{
+  .has-floating-nav-active-mixin();
+}
+
+.has-floating-nav-active{
+  @media @only-xs{
+    .has-floating-nav-active-mixin();
+  }
+}
+
 .has-floating-nav-active-mixin{
   // Scrolling
   &.nav-header{
@@ -81,43 +118,8 @@
   }
 }
 
-.has-floating-nav-active{
-  @media @only-xs{
-    .has-floating-nav-active-mixin();
-  }
-}
 
-.app-is-scrolled .has-floating-nav-active{
-  .has-floating-nav-active-mixin();
-}
 
-.nav-header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: @zindex-navbar;
-  transition: top 750ms ease;
-
-  // height: 80px;
-  // background-color: rgba(102, 39, 46, 0.5);
-
-  @media @min-sm{
-
-  }
-
-  &:after{
-    content: "";
-    position: fixed;
-    left: 40px;
-    width: 1px;
-    background-color: @brand-gray;
-    top: 0;
-    bottom: 0;
-    opacity: 0;
-    transition: opacity 500ms ease;
-  }
-}
 
 .nav-header__logo{
   position: absolute;
@@ -254,7 +256,7 @@
 
 .primary-nav{
   text-align: right;
-  
+
   li{
     margin-bottom: @spacing-small;
     position: relative;

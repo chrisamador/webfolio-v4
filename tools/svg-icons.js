@@ -1,11 +1,21 @@
-const fs = require('fs');
-const glob = require("glob");
-const path = require('path');
+'use strict';
+
+var fs        = require('fs');
+var path      = require('path');
+var glob      = require('glob');
+var svgstore  = require('svgstore');
+const SVGO    = require('svgo');
 const ejs = require('ejs');
 
-const SVGO = require('svgo');
-const svgstore = require('svgstore');
-// const SVGSpriter = require('svg-sprite')
+let svgo = new SVGO({
+  plugins: [
+    {cleanupNumericValues: {floatPrecision: 2}},
+    {removeStyleElement: true},
+    {removeTitle: true},
+    {removeViewBox: false}
+  ],
+  multipass: true,
+});
 
 const template = `
   <!DOCTYPE html>
@@ -15,6 +25,23 @@ const template = `
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SVG Icons</title>
     <style>
+      body{margin: 0; background: black; text-align: center; font-family: sans-serif}
+      ul{margin: 0; padding: 0; list-style: none;}
+      li{
+        display: inline-block;
+        padding: 2em;
+        width: 90px;
+        height: 90px;
+        vertical-align: top;
+      }
+      .icon{max-width: 28px; max-height: 28px; fill: white; display: inline-block; vertical-align: middle;}
+      .name{
+        font-size: 80%;
+        background: black;
+        padding: 10px;
+        color: white;
+        margin-top: 1em;
+      }
     </style>
   </head>
   <body>
@@ -23,13 +50,13 @@ const template = `
     <%- svgSymbols %>
   </span>
   <div class="svgsprite">
-    <ul class="svgsprite_list">
+    <ul>
       <% icons.forEach(function(file){ %>
-      <li class="svgsprite_list_item">
-        <svg class="svgsprite_icon">
+      <li>
+        <svg class="icon">
           <use xlink:href="#<%- file.id %>"/>
         </svg>
-        <p class="svgsprite_id"><%- file.id %></p>
+        <div class="name"><%- file.id %></div>
       </li>
       <% }); %>
     </ul>
@@ -38,92 +65,44 @@ const template = `
   </html>
 `;
 
-let svgRawFolder = 'src/assets/icons/raw/*.svg',
-  svgSymbols;
+var inputs = glob.sync('src/assets/icons/raw/*.svg');
 
-let svgo = new SVGO({
-  plugins: [
-    {cleanupIDs: {remove: true}},
-    {cleanupNumericValues: {floatPrecision: 2}},
-    {removeStyleElement: true},
-    {removeTitle: true},
-  ],
-  multipass: true,
-});
-
-let rawSvgs = glob.sync(svgRawFolder);
-
-let cleanSvgPromises = rawSvgs.map(filepath => (
+let cleanSvgPromises = inputs.map(filepath => (
   new Promise((resove, reject) => {
     svgo.optimize(
-      fs.readFileSync(path.resolve(__dirname, '../', filepath), 'utf8'),
-      {path: path.resolve(__dirname, '../', filepath)}
+      fs.readFileSync(filepath, 'utf8'),
+      {path: filepath}
     ).then(({data, info}) => {
       resove({
         filepath,
         data,
         info,
       });
-    })
-      .catch(e => reject(e));
+    }).catch(e => reject(e));
   })
 ));
 
-let svgIDName = (filepath) => ('icon-' + path.basename(filepath, '.svg'));
+let name = (file) => ('icon-' + path.basename(file, '.svg'));
 
 Promise.all(cleanSvgPromises.map(p => p.catch(e => e)))
   .then(cleanSvgArry => {
-    // svgs have been clean
-    // console.log('cleanSvgArry length: ', cleanSvgArry);
-    svgSymbols = cleanSvgArry.reduce((sprites, {filepath, data}) => {
-      if(!data) return sprites;
-      // console.log( path.basename(filepath, '.svg'))
-      // console.log(data);
-      return sprites.add(svgIDName(filepath), data);
 
-    }, svgstore({inline: true}));
+    // Build up the spritesheet
+    var sprites = cleanSvgArry.reduce(function(sprites, file) {
+      if(!file.data) return sprites;
+      //return sprites.add(name(file), fs.readFileSync(file, 'utf8'));
+      return sprites.add(name(file.filepath), file.data);
+    }, svgstore({ inline: true }));
 
-
+    fs.writeFileSync('src/assets/icons/symbols.svg', sprites);
     fs.writeFileSync(
-      path.resolve(__dirname, '../', 'src/assets/icons/symbols.svg'),
-      svgSymbols
-    );
-    fs.writeFileSync(
-      path.resolve(__dirname, '../', 'src/assets/icons/symbols.html'),
+      'src/assets/icons/symbols.html',
       ejs.render(template, {
-        svgSymbols: svgSymbols.element.html(),
-        icons: cleanSvgArry.map(({filepath}) => {
-          if(!filepath) return {id: 'error'};
-          return {id: svgIDName(filepath)};
+        svgSymbols: sprites.element.html(),
+        icons: cleanSvgArry.map((file) => {
+          if(!file.data) return {id: 'error:'};
+          return {id: name(file.filepath)};
         }),
       })
     );
   });
-
-// console.log(files);
-//
-// imagemin(['src/assets/icons/raw/*.svg'], 'src/assets/icons/clean', {
-//   use: [
-//     imageminSvgo({
-//       plugins: [
-//         {cleanupIDs: {remove: true}},
-//         {cleanupNumericValues: {floatPrecision: 2}},
-//         {removeStyleElement: true},
-//         {removeTitle: true},
-//         {removeEditorsNSData: true},
-//         {removeUnusedNS: true},
-//       ],
-//       multipass: true,
-//     }),
-//   ],
-// }).then(function () {
-//   // Svgs have been cleaned now combine
-//   const t = svgstore({
-//
-//   })
-//
-//   console.log('T: ', t);
-//
-//   // svgspriteContent = fs.readFileSync('src/main/resources/svg/casa-svgsprite.svg', 'utf8');
-//
-// });

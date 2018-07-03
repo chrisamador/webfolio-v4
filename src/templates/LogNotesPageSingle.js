@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
 import Link from 'gatsby-link';
 
@@ -9,9 +10,12 @@ import Row from '../components/shared/layout/Row';
 
 import DesNotesPreviewMini from '../components/lognotes/previews/DesnotePreviewMini';
 import DevLogPreviewMini from '../components/lognotes/previews/DevlogPreviewMini';
+import Seo from '../components/shared/Seo';
 import dateFormater from '../components/shared/ults/dateFormater';
 
 import FunShapes from '../components/shared/FunShapes';
+
+import {SiteMetaActions} from '../state/reducers/siteMeta';
 
 const ref = {
   logo_subtitle: {
@@ -19,8 +23,8 @@ const ref = {
     note: () => ('Desing + How Tos + Thoughts')
   },
   logo_title: {
-    log: () => 'Dev.Logs',
-    note: () => 'Des.Notes'
+    log: () => 'Logs',
+    note: () => 'Notes'
   },
   viewmore: {
     log: () => 'logs',
@@ -65,7 +69,7 @@ type PropType = {
   pathContext: {
     slug: string,
     next: {},
-    related: Array<{}>
+    related: Array<{node: MatchedLogsNotesSingleType}>
   },
   data: {
     devdes: MatchedLogsNotesSingleType
@@ -84,13 +88,16 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   // componentWillReceiveProps(nextProps){
   //   this.confirmRead(nextProps);
   // }
+  componentDidMount(){
+    this.props.dispatch(SiteMetaActions.updateSiteMetaColor('#66272E'))
+  }
   confirmRead(props){
     let action;
     switch (props.data.devdes.fields.type) {
-      case "log":
+      case 'log':
         action = userActions.changeLogsReadStatus(props.devdes.slug, true);
         break;
-      case "note":
+      case 'note':
         action = userActions.changeNotesReadStatus(props.devdes.slug, true);
         break;
     }
@@ -98,16 +105,22 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   }
   render(){
     let {devdes} = this.props.data;
-    let formatDate = dateFormater(devdes.frontmatter.meta.date);
+    let {related} = this.props.pathContext;
+    let formatDate = dateFormater(devdes.frontmatter.date);
     // debugger;
     return (
-      <div className={"devdes-single is-" + devdes.fields.type + " is-color-" + devdes.frontmatter.meta.primary_color}>
+      <div className={'devdes-single is-' + devdes.fields.type + " is-color-" + devdes.frontmatter.meta.primary_color}>
+        <Seo
+          title={devdes.frontmatter.title}
+          url={devdes.fields.slug}
+          description={devdes.excerpt}
+          image={devdes.frontmatter.image_main}/>
         <FunShapes strokeColor="#E8E2D7" style={{zIndex: -1}}/>
         <div className="devdes-single__logo">
-          <div className="devdes-logo">
+          <Link to="/logs-notes" className="devdes-logo">
             <div className="devdes-logo__subtitle">{d(devdes.fields.type)("logo_subtitle")}</div>
             <div className="devdes-logo__title">{d(devdes.fields.type)("logo_title")}</div>
-          </div>
+          </Link>
         </div>
         <div className="devdes-single__hero">
           <div className="container is-position">
@@ -116,14 +129,14 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
               date: formatDate
             })}
             { devdes.fields.type === 'log' &&
-              (devdes.frontmatter.image_id
+              (devdes.frontmatter.images.main_id
                 ? (<div>
-                  <Icon id={devdes.images.type} className="icon-devlog" style={{top: 50, right: 100}}/>
-                  <Icon id={devdes.images.main_id} className="icon-devlog-large" style={{top: 60, right: 100}}/>
+                  <Icon id={devdes.frontmatter.images.type_id} className="icon-devlog" style={{top: 50, right: 100}}/>
+                  <Icon id={devdes.frontmatter.images.main_id} className="icon-devlog-large" style={{top: 60, right: 100}}/>
                 </div>
                 )
                 :(
-                  <Icon id="icon-logo-react" className="icon-devlog" style={{top: 50, right: 100}}/>
+                  <Icon id={devdes.node.frontmatter.images.type_id} className="icon-devlog" style={{top: 50, right: 100}}/>
                 ))
             }
           </div>
@@ -177,21 +190,21 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
           <div className="container">
             <h5 className="devdes-single__related-title">Related</h5>
             <Row>
-              {/*
-                related && related.slice(0,3).map((d) => {
-                  switch (d.type) {
-                    case "log": return (
-                      <Col className="col-xs-12 col-sm-6 col-md-3" key={d.slug}>
-                        <DevLogPreviewMini devlog={d}/>
+              {
+                related && related.slice(0,3).map((edge) => {
+                  switch (edge.node.fields.type) {
+                    case 'log': return (
+                      <Col className="col-xs-12 col-sm-6 col-md-3" key={edge.node.fields.slug}>
+                        <DevLogPreviewMini devlog={edge}/>
                       </Col>
                     );
-                    case "note": return (
-                      <Col className="col-xs-12 col-sm-6 col-md-3" key={d.slug} >
-                        <DesNotesPreviewMini desnote={d}/>
+                    case 'note': return (
+                      <Col className="col-xs-12 col-sm-6 col-md-3" key={edge.node.fields.slug} >
+                        <DesNotesPreviewMini desnote={edge}/>
                       </Col>
                     );
                   }
-                })*/
+                })
               }
               <Col className="col-xs-12 col-sm-6 col-md-3">
                 <Link to={"/logs-notes?view=" + d(devdes.fields.type)("viewmore")} className="devdes-more">
@@ -209,10 +222,12 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
   }
 }
 
-export default LogNotesPageListSingle
+export default connect(() => ({
+}))(LogNotesPageListSingle);
 
 export type MatchedLogsNotesSingleType = {
   html: string,
+  excerpt: string,
   fields: {
     slug: string,
     type: 'log' | 'note'
@@ -220,9 +235,13 @@ export type MatchedLogsNotesSingleType = {
   frontmatter: {
     title: string,
     tags: string,
-    image_main: string,
+    images: {
+      main_url: string,
+      main_id: string,
+      type_id: string,
+    },
+    date: string,
     meta: {
-      date: string,
       primary_color: string,
       type_of: string,
       min_read: string,
@@ -240,12 +259,17 @@ export const query = graphql`
         type
       }
       html
+      excerpt
       frontmatter{
         title
         tags
-        image_main
+        date
+        images {
+          main_url
+          main_id
+          type_id
+        }
         meta {
-          date
           primary_color
           type_of
           min_read

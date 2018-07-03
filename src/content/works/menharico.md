@@ -1,5 +1,5 @@
 ---
-title: NIEA
+title: Men Hair Co
 primary_color: "#7eb65b"
 meta: {
   role: Designer and Developer,

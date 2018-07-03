@@ -1,22 +1,22 @@
 // @flow
 import React, { PureComponent } from "react";
-import {connect} from "react-redux";
 
 import Link from 'gatsby-link';
-import WorkList from '../work/WorkList';
+import WorkSingle from '../work/WorkSingle';
 
-// import type {WorkType} from '../../../types/siteTypes';
+import {QueryContentWorksType} from "../../pages/index.js";
 
 type PropType = {
-  // works: Array<WorkType>
+  works: QueryContentWorksType
 };
 type StateType = {};
 
 class HomeWorks extends PureComponent<PropType, StateType> {
   state = {};
   render(){
-    let works = [...this.props.works].splice(0, 3),
-        length = this.props.works.length;
+
+    let works = [...this.props.works.edges],
+        length = this.props.works.totalCount;
 
     return (
       <section className="home-works">
@@ -27,7 +27,12 @@ class HomeWorks extends PureComponent<PropType, StateType> {
           </div>
         </header>
 
-        <WorkList works={works} user={this.props.user}/>
+        {this.props.works.edges.map((work) => (
+          <WorkSingle
+            key={work.node.fields.slug}
+            work={work}
+            userWorkMeta={{}}/>
+        ))}
 
         <div className="home-works__view-all">
           <Link to="/works" className="btn btn-primary">View All Works ({length})</Link>
@@ -38,7 +43,4 @@ class HomeWorks extends PureComponent<PropType, StateType> {
   }
 }
 
-export default connect((state) => ({
-  works: [],
-  user: {}
-}))(HomeWorks);
+export default HomeWorks;

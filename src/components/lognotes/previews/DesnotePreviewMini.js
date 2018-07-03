@@ -16,11 +16,11 @@ class DesNotesPreviewMini extends PureComponent<PropType, StateType> {
   state = {};
   render(){
     let {desnote} = this.props;
-    let formatDate = dateFormater(desnote.node.frontmatter.meta.date);
+    let formatDate = dateFormater(desnote.node.frontmatter.date);
 
     return (
       <Link to={desnote.node.fields.slug} className={"desnotes-preview-mini is-color-" + desnote.node.frontmatter.meta.primary_color}
-        style={{backgroundImage: `url(${desnote.node.frontmatter.image_main})`}}>
+        style={{backgroundImage: `url(${desnote.node.frontmatter.images.main_url})`}}>
         <div className="desnotes-preview-mini__title-box">
           <h3>{desnote.node.frontmatter.title}</h3>
           <h6>{formatDate}</h6>

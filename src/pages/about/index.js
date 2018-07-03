@@ -2,7 +2,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-// import {siteMetaActions} from '../../../state/reducer/rootReducer';
+import Seo from '../../components/shared/Seo';
+import {SiteMetaActions} from '../../state/reducers/siteMeta';
 // import FunShapes from '../../common/FunShapes';
 import Icon from '../../components/shared/Icon';
 import Col from '../../components/shared/layout/Col';
@@ -13,18 +14,15 @@ type StateType = {};
 
 class About extends PureComponent<PropType, StateType> {
   state = {};
-  UNSAFE_componentDidMount() {
-    document.body.classList.add('is-about-page');
-  }
-  UNSAFE_componentWillMount() {
-    // this.props.dispatch(siteMetaActions.changeHeroColor("white"))
-  }
-  componentWillUnmount() {
-    document.body.classList.remove('is-about-page');
+  componentDidMount(){
+    this.props.dispatch(SiteMetaActions.updateSiteMetaColor('white'))
   }
   render() {
     return (
       <div className="about">
+        <Seo
+          title="About"
+          url={this.props.pageResources ? this.props.pageResources.page.path : null}/>
         {/* <FunShapes strokeColor="#723239" /> */}
         <div className="container">
           <div className="about__profile-area">
@@ -108,6 +106,5 @@ class About extends PureComponent<PropType, StateType> {
   }
 }
 
-export default connect(() => {
-  return {};
-})(About);
+export default connect(() => ({
+}))(About);

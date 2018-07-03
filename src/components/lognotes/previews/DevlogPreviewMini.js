@@ -15,7 +15,7 @@ class DevlogPreviewMini extends PureComponent<PropType, StateType> {
   state = {};
   render(){
     let {devlog} = this.props;
-    let formatDate = dateFormater(devlog.node.frontmatter.meta.date);
+    let formatDate = dateFormater(devlog.node.frontmatter.date);
 
     return (
       <Link to={devlog.node.fields.slug} className={"devlog-preview-mini is-color-" + devlog.node.frontmatter.meta.primary_color}>
@@ -23,7 +23,7 @@ class DevlogPreviewMini extends PureComponent<PropType, StateType> {
           <div className="devlog-preview-mini__meta">
           </div>
           <div className="devlog-preview__images">
-            <Icon id="icon-logo-react" className="icon-devlog-mini" style={{top: 15, left: "50%", transform: "translateX(-50%)"}}/>
+            <Icon id={devlog.node.frontmatter.images.type_id} className="icon-devlog-mini" style={{top: 15, left: "50%", transform: "translateX(-50%)"}}/>
           </div>
           <div className="devlog-preview-mini__title-box">
             <h3>{devlog.node.frontmatter.title}</h3>

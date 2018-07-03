@@ -25,6 +25,7 @@
   text-align: center;
   display: inline-block;
   margin-bottom: @spacing;
+  text-decoration: none;
 }
 
 .devdes-logo__subtitle{
@@ -51,7 +52,7 @@
 
 .devdes-single{
 
-  &.is-devlog{
+  &.is-log{
     &:before{
       content: "";
       display: block;
@@ -97,7 +98,7 @@
     }
   }
 
-  &.is-desnote{
+  &.is-note{
 
     &.is-color-blue{
       .devdes-single__des-title{
@@ -213,7 +214,7 @@
 
 .devdes-meta__single{
   margin-bottom: @spacing-small;
-  
+
   h6{
     color: @brand-tan;
   }

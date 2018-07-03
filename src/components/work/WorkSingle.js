@@ -5,10 +5,10 @@ import Row from '../shared/layout/Row';
 import Link from 'gatsby-link';
 import MockScreen from '../shared/MockScreen';
 
-// import type {WorkType} from "../../../types/siteTypes";
+import type {QueryWorksSingleType} from '../../pages/index';
 
 type PropType = {
-  // work: WorkType,
+  work: QueryWorksSingleType,
   userWorkMeta: typeof undefined | {
     percent_read?: number,
     read?: boolean
@@ -24,22 +24,22 @@ class WorksSingle extends PureComponent<PropType, StateType> {
     let read = (userWorkMeta) ? userWorkMeta.read : false;
     if(!work) return null;
     return (
-      <div className="work-example" style={{backgroundImage: `url(${work.images.bg})`}}>
+      <div className="work-example" style={{backgroundImage: `url(${work.node.frontmatter.images.bg})`}}>
         <div className="container">
           <Row>
             <Col className="col-xs-12 col-sm-5">
               <div className="work-example__content">
                 <ReadStatus read={read} />
-                <h2 className="work-example__title">{work.title}</h2>
+                <h2 className="work-example__title">{work.node.frontmatter.title}</h2>
                 <div className="work-example__preview">
-                  <p>{work.preview}</p>
+                  <p>{work.node.frontmatter.preview}</p>
                 </div>
-                <Link to={'/works/' + work.slug} className="btn btn-white">See More</Link>
+                <Link to={work.node.fields.slug} className="btn btn-white">See More</Link>
               </div>
             </Col>
             <Col className="col-xs-12 col-sm-7">
-              <Link to={"/works/" + work.slug}>
-                <MockScreen backgroundImage={work.images.preview}/>
+              <Link to={work.node.fields.slug}>
+                <MockScreen backgroundImage={work.node.frontmatter.images.preview}/>
               </Link>
             </Col>
           </Row>

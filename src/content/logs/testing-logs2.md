@@ -1,10 +1,14 @@
 ---
 title: Testing logs 2
-image_main: https://res.cloudinary.com/camador/image/upload/v1525135371/webfolio/deslog-2018-4-8.jpg
+date: 2018-02-01
+images: {
+  main_url: https://res.cloudinary.com/camador/image/upload/v1525135371/webfolio/deslog-2018-4-8.jpg,
+  main_id: icon-test-image,
+  type_id: icon-logo-react
+}
 tags:
   - react
 meta: {
-  date: "1519880400000",
   primary_color: teal,
   type_of: How To,
   min_read: 15 - 32,

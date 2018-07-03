@@ -18,7 +18,7 @@ class DevLogPreview extends PureComponent<PropType, StateType> {
   render(){
     let {devlog} = this.props;
     if(!devlog);
-    let formatDate = dateFormater(devlog.node.frontmatter.meta.date);
+    let formatDate = dateFormater(devlog.node.frontmatter.date);
     return (
       <Link to={devlog.node.fields.slug} className={"devlog-preview is-color-" + devlog.node.frontmatter.meta.primary_color}>
         <div className="devlog-preview__inner">
@@ -31,14 +31,14 @@ class DevLogPreview extends PureComponent<PropType, StateType> {
           </div>
           <div className="devlog-preview__images">
             {
-              devlog.node.frontmatter.meta.main_id
+              devlog.node.frontmatter.images.main_id
                 ? (<div>
-                  <Icon id={devlog.images.type} className="icon-devlog" style={{top: 50, left: -30}}/>
-                  <Icon id={devlog.images.main_id} className="icon-devlog-large" style={{top: 60, right: 10}}/>
+                  <Icon id={devlog.node.frontmatter.images.type_id} className="icon-devlog" style={{top: 50, left: -30}}/>
+                  <Icon id={devlog.node.frontmatter.images.main_id} className="icon-devlog-large" style={{top: 60, right: 10}}/>
                 </div>
                 )
                 :(
-                  <Icon id="icon-logo-react" className="icon-devlog" style={{top: 50, left: -30}}/>
+                  <Icon id={devlog.node.frontmatter.images.type_id} className="icon-devlog" style={{top: 50, left: -30}}/>
                 )
             }
           </div>

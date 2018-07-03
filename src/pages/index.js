@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 
 import HomeDesNotes from '../components/home/HomeDesNotes';
 import HomeDevLogs from '../components/home/HomeDevLogs';
@@ -8,7 +8,7 @@ import HomeHero from '../components/home/HomeHero';
 import HomeIntro from '../components/home/HomeIntro';
 import HomeWorks from '../components/home/HomeWorks';
 
-// import {siteMetaActions} from "../../../state/reducer/rootReducer";
+import {SiteMetaActions} from '../state/reducers/siteMeta';
 
 type PropType = {
   data: {
@@ -21,18 +21,18 @@ type StateType = {};
 
 class HomePage extends PureComponent<PropType, StateType> {
   componentDidMount(){
-    // this.props.dispatch(siteMetaActions.changeHeroColor("white"))
+    this.props.dispatch(SiteMetaActions.updateSiteMetaColor('white'))
   }
   render(){
     // console.log(this.props.data);
     // let devlogs = [], desnotes = [];
-    let {logs, notes} = this.props.data;
+    let {logs, notes, works} = this.props.data;
 
     return (
       <div className="home">
         <HomeHero />
         <HomeIntro />
-        <HomeWorks />
+        <HomeWorks works={works}/>
         <HomeDevLogs devlogs={logs}/>
         <HomeDesNotes desnotes={notes}/>
       </div>
@@ -40,12 +40,8 @@ class HomePage extends PureComponent<PropType, StateType> {
   }
 }
 
-// export default connect((state) => ({
-//   devlogs: [],
-//   desnotes: []
-// }))(HomePage);
-
-export default HomePage;
+export default connect(() => ({
+}), )(HomePage);
 
 // Works type
 export type QueryContentWorksType = {
@@ -62,7 +58,18 @@ export type QueryWorksSingleType = {
     html: string,
     frontmatter: {
       title: string,
-      tags: string,
+      primary_color: string,
+      preview: string,
+      meta: {
+        role: string,
+        date: string,
+        client: string,
+        scope: string
+      },
+      images: {
+        bg: string,
+        preview: string,
+      }
     }
   }
 }
@@ -82,9 +89,13 @@ export type QueryLogsNotesSingleType = {
     frontmatter: {
       title: string,
       tags: string,
-      image_main: string,
+      images: {
+        main_url: string,
+        main_id: string,
+        type_id: string,
+      },
+      date: string,
       meta: {
-        date: string,
         primary_color: string,
         type_of: string,
         min_read: string,
@@ -113,12 +124,27 @@ export const query = graphql`
          html
          frontmatter{
            title
-           tags
+           primary_color
+           preview
+           meta {
+             role
+             date
+             client
+             scope
+           }
+           images {
+             bg
+             preview
+           }
          }
        }
      }
     }
-    logs: allMarkdownRemark(filter: {fields: {type: {eq: "log"}}}, limit: 3){
+    logs: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fields: {type: {eq: "log"}}}
+      limit: 3
+      ){
       totalCount
       edges{
         node{
@@ -130,9 +156,13 @@ export const query = graphql`
           frontmatter{
             title
             tags
-            image_main
+            images {
+              main_url
+              main_id
+              type_id
+            }
+            date
             meta {
-              date
               primary_color
               type_of
               min_read
@@ -142,7 +172,11 @@ export const query = graphql`
         }
       }
     }
-    notes: allMarkdownRemark(filter: {fields: {type: {eq: "note"}}}, limit: 3){
+    notes: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fields: {type: {eq: "note"}}}
+      limit: 3
+      ){
       totalCount
        edges{
          node{
@@ -154,9 +188,13 @@ export const query = graphql`
            frontmatter{
              title
              tags
-             image_main
+             images {
+               main_url
+               main_id
+               type_id
+             }
+             date
              meta {
-               date
                primary_color
                type_of
                min_read

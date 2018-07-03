@@ -41,43 +41,126 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark {
+        works: allMarkdownRemark(
+          filter: {fields: {type: {eq: "work"}}}
+        ){
           edges {
             node {
               fields {
                 slug
                 type
               }
+              frontmatter {
+                title
+                images {
+                  bg
+                  preview
+                }
+              }
+            }
+          }
+        }
+        logs: allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {fields: {type: {eq: "log"}}}
+        ){
+          edges {
+            node {
+              fields {
+                slug
+                type
+              }
+              frontmatter{
+                title
+                tags
+                images {
+                  main_url
+                  main_id
+                  type_id
+                }
+                date
+                meta {
+                  primary_color
+                  type_of
+                  min_read
+                  exp
+                }
+              }
+            }
+          }
+        }
+        notes: allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {fields: {type: {eq: "note"}}}
+        ){
+          edges {
+            node {
+              fields {
+                slug
+                type
+              }
+              frontmatter{
+                title
+                tags
+                images {
+                  main_url
+                  main_id
+                  type_id
+                }
+                date
+                meta {
+                  primary_color
+                  type_of
+                  min_read
+                  exp
+                }
+              }
             }
           }
         }
       }
     `).then(res => {
-      let componentName = '';
-      // console.log(JSON.stringify(res, null, 4))
-      res.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      // console.log(JSON.stringify(res));
+      res.data.works.edges.forEach(({ node }, index)=> {
 
-        if(node.fields.type === 'log' || node.fields.type === 'note'){
-          componentName = 'LogNotesPageSingle.js';
-        }
-        if(node.fields.type === 'work'){
-          componentName = 'WorkPageSingle.js';
-          componentName = 'JustATest.js';
-        }
-
-
+        let next = res.data.works.edges[index + 1]
+          ? res.data.works.edges[index + 1].node
+          : res.data.works.edges[0].node;
 
         createPage({
           path: node.fields.slug,
-          component: path.resolve(`./src/templates/${componentName}`),
+          component: path.resolve('./src/templates/WorkPageSingle.js'),
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
             slug: node.fields.slug,
-            related: {testing: true},
-            next: {testing: true}
+            next,
           },
         });
-      });
+      })
+
+      res.data.logs.edges.forEach(({ node })=> {
+        createPage({
+          path: node.fields.slug,
+          component: path.resolve('./src/templates/LogNotesPageSingle.js'),
+          context: {
+            // Data passed to context is available in page queries as GraphQL variables.
+            slug: node.fields.slug,
+            related: res.data.logs.edges,
+          },
+        });
+      })
+
+      res.data.notes.edges.forEach(({ node })=> {
+        createPage({
+          path: node.fields.slug,
+          component: path.resolve('./src/templates/LogNotesPageSingle.js'),
+          context: {
+            // Data passed to context is available in page queries as GraphQL variables.
+            slug: node.fields.slug,
+            related: res.data.notes.edges,
+          },
+        });
+      })
 
       resolve();
     });
