@@ -4,10 +4,30 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-less',
-    'gatsby-transformer-remark',
     'gatsby-transformer-json',
     'gatsby-plugin-react-svg',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {

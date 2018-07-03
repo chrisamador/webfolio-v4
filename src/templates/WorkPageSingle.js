@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import Link from 'gatsby-link';
 import { connect } from 'react-redux';
 
-import FunShapes from '../components/shared/FunShapes';
+// import FunShapes from '../components/shared/FunShapes';
 
 import Icon from '../components/shared/Icon';
 import Col from '../components/shared/layout/Col';
@@ -16,6 +16,20 @@ import Seo from '../components/shared/Seo';
 
 import {SiteMetaActions} from '../state/reducers/siteMeta';
 
+// Custom MD components
+import rehypeReact from 'rehype-react'
+import Background from './WorkComponent/Background';
+import Styleguide from './WorkComponent/Styleguide';
+import Designs from './WorkComponent/Designs';
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    'work-background': Background,
+    'work-styleguide': Styleguide,
+    'work-design': Designs
+  },
+}).Compiler
 
 type PropType = {
   pathContext: {
@@ -104,8 +118,10 @@ class WorkPageSingle extends PureComponent<PropType, StateType> {
           </div>
         </div>
         <div className="work-single__breakdown">
-          <FunShapes strokeColor="#E8E2D7" />
-
+          {/* <FunShapes strokeColor="#E8E2D7" /> */}
+          {
+            renderAst(work.htmlAst)
+          }
         </div>
         <div className="work-single__next">
           <h6 className="work-single__next-thank-you">Thank you for reading</h6>
@@ -172,7 +188,7 @@ export const query = graphql`
         type
       }
       excerpt
-      html
+      htmlAst
       frontmatter{
         title
         primary_color
@@ -182,8 +198,6 @@ export const query = graphql`
           date
           client
           scope
-          read
-          percent_read
         }
         images {
           bg
@@ -197,3 +211,28 @@ export const query = graphql`
 // {Object.keys(work.frontmatter.content).map((key, index) => (
 //   <WorkSingleSection key={key} index={index + 1} title={key} content={work.frontmatter.content[key]} primaryColor={work.frontmatter.primary_color} />
 // ))}
+
+{/* <section className="work-single__section">
+  <div className="work-single__section-title-area">
+    <div className="work-single__section-number">1</div>
+    <h5 className="work-single__section-title">Title</h5>
+  </div>
+  <div className="work-single__section-content">
+    <div className="container">
+      <Row className="u-mb-l">
+        <Col className="col-xs-12 col-sm-6 col-sm-offset-3">
+          Simple intro
+        </Col>
+      </Row>
+      <Row>
+        {
+          ['col', 'col','col'].map((item, index) => (
+            <Col className="col-xs-6 col-sm-4 text-sm-center" key={index}>
+              {item}
+            </Col>
+          ))
+        }
+      </Row>
+    </div>
+  </div>
+</section> */}

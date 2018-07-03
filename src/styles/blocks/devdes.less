@@ -240,7 +240,11 @@
 .devdes-single__content-inner{
   background-color: white;
   margin-bottom: @spacing-large;
-  padding: @spacing-large 0;
+  padding: @spacing-large @spacing-small;
+
+  @media @min-sm{
+    padding: @spacing-large 0;
+  }
 }
 
 .devdes-single__content-section{

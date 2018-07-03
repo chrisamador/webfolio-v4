@@ -97,7 +97,7 @@
 }
 
 .work-single__next-controls{
-  margin-top: @spacing-xlarge;
+  margin-top: 180px;
   background-color: @brand-red;
   padding: @spacing 0;
 }
@@ -106,7 +106,7 @@
   background-color: white;
   padding: @spacing;
   margin-bottom: @spacing;
-  margin-top: -135px;
+  margin-top: -185px;
   text-decoration: none;
   background-size: 100%;
   position: relative;
@@ -213,7 +213,7 @@
   margin-bottom: @spacing-xsmall;
 
   h5{
-    margin-bottom: 0;
+    margin: 0;
   }
 }
 
@@ -235,6 +235,10 @@
   @media @min-sm{
     margin-right: @spacing;
     margin-bottom: 0;
+  }
+
+  h6{
+    margin-top: 0;
   }
 }
 
@@ -277,12 +281,15 @@
 
 .section-content-designs{
   margin-bottom: @spacing-large;
+
+  &.is-single{
+    text-align: center;
+  }
+
 }
 
 .section-content-designs__caption{
   margin-top: @spacing;
 
-  &.is-single{
-    text-align: center;
-  }
+
 }

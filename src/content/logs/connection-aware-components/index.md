@@ -147,7 +147,8 @@ Returns the physical network type of the user agent as strings like “cellular�
 
 This is a combined estimation of the network quality, based on the round-trip time and downlink properties. It returns a string that describes the connection as either: `slow-2g`, `2g`, `3g` or `4g`. Here’s how these categories are determined:
 
-[categories image](./categories.png 'Hover text goes here')
+![categories image](./images/categories.png 'Hover text goes here')
+
 
 ## Responding to Changes
 
@@ -191,7 +192,7 @@ The above example makes our component a bit unpredictable - it renders different
 
 Such a HoC could take in any component we want and make it connection-aware, injecting the effective connection type as a prop.
 
-```
+```javascript
 function withConnectionType(WrappedComponent, respondToChange = false) {
     return class extends React.Component {
         constructor(props) {
