@@ -201,12 +201,12 @@ class LogNotesPageListSingle extends PureComponent<PropType, StateType> {
                   switch (edge.node.fields.type) {
                     case 'log': return (
                       <Col className="col-xs-12 col-sm-6 col-md-3" key={edge.node.fields.slug}>
-                        <DevLogPreviewMini devlog={edge}/>
+                        <DevLogPreviewMini single={edge}/>
                       </Col>
                     );
                     case 'note': return (
                       <Col className="col-xs-12 col-sm-6 col-md-3" key={edge.node.fields.slug} >
-                        <DesNotesPreviewMini desnote={edge}/>
+                        <DesNotesPreviewMini single={edge}/>
                       </Col>
                     );
                   }

@@ -118,12 +118,12 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
                   switch (d.node.fields.type) {
                     case 'log': return (
                       <Col className="col-xs-12 col-sm-4" key={d.node.fields.slug}>
-                        <DevLogPreview devlog={d}/>
+                        <DevLogPreview single={d}/>
                       </Col>
                     );
                     case 'note': return (
                       <Col className="col-xs-12 col-sm-4" key={d.node.fields.slug} >
-                        <DesNotesPreview desnote={d}/>
+                        <DesNotesPreview single={d}/>
                       </Col>
                     );
                   }
@@ -136,12 +136,12 @@ class LogNotesPageList extends PureComponent<PropType, StateType> {
                   switch (d.node.fields.type) {
                     case 'log': return (
                       <Col className="col-xs-12 col-sm-3" key={d.node.fields.slug}>
-                        <DevLogPreviewMini devlog={d}/>
+                        <DevLogPreviewMini single={d}/>
                       </Col>
                     );
                     case 'note': return (
                       <Col className="col-xs-12 col-sm-3" key={d.node.fields.slug} >
-                        <DesNotesPreviewMini desnote={d}/>
+                        <DesNotesPreviewMini single={d}/>
                       </Col>
                     );
                   }

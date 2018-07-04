@@ -7,22 +7,22 @@ import dateFormater from '../../shared/ults/dateFormater';
 import type {QueryLogsNotesSingleType} from '../../../pages/index';
 
 type PropType = {
-  // desnote: DesNotesType
-  desnote: QueryLogsNotesSingleType
+  // single: DesNotesType
+  single: QueryLogsNotesSingleType
 };
 type StateType = {};
 
 class DesNotesPreviewMini extends PureComponent<PropType, StateType> {
   state = {};
   render(){
-    let {desnote} = this.props;
-    let formatDate = dateFormater(desnote.node.frontmatter.date);
+    let {single} = this.props;
+    let formatDate = dateFormater(single.node.frontmatter.date);
 
     return (
-      <Link to={desnote.node.fields.slug} className={"desnotes-preview-mini is-color-" + desnote.node.frontmatter.meta.primary_color}
-        style={{backgroundImage: `url(${desnote.node.frontmatter.images.main_url})`}}>
+      <Link to={single.node.fields.slug} className={"desnotes-preview-mini is-color-" + single.node.frontmatter.meta.primary_color}
+        style={{backgroundImage: `url(${single.node.frontmatter.images.main_url})`}}>
         <div className="desnotes-preview-mini__title-box">
-          <h3>{desnote.node.frontmatter.title}</h3>
+          <h3>{single.node.frontmatter.title}</h3>
           <h6>{formatDate}</h6>
         </div>
       </Link>

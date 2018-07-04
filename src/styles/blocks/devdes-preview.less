@@ -213,6 +213,11 @@
   transition: box-shadow 500ms ease;
   margin-bottom: @spacing;
 
+  &.is-mini{
+    min-height: 0px;
+    max-width: 100%;
+  }
+
   &:hover,
   &:focus{
     box-shadow: inset 0 1px 14px rgba(0, 0, 0, 0.2);
@@ -229,7 +234,7 @@
   }
 
   h5{
-    margin-top: 0;
+    margin: 0;
   }
 }
 

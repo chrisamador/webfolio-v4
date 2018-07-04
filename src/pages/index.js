@@ -2,8 +2,9 @@
 import React, { PureComponent } from 'react';
 import {connect} from 'react-redux';
 
-import HomeDesNotes from '../components/home/HomeDesNotes';
-import HomeDevLogs from '../components/home/HomeDevLogs';
+// import HomeDesNotes from '../components/home/HomeDesNotes';
+// import HomeDevLogs from '../components/home/HomeDevLogs';
+import HomeLogsNotes from '../components/home/HomeLogsNotes';
 import HomeHero from '../components/home/HomeHero';
 import HomeIntro from '../components/home/HomeIntro';
 import HomeWorks from '../components/home/HomeWorks';
@@ -33,8 +34,8 @@ class HomePage extends PureComponent<PropType, StateType> {
         <HomeHero />
         <HomeIntro />
         <HomeWorks works={works}/>
-        <HomeDevLogs devlogs={logs}/>
-        <HomeDesNotes desnotes={notes}/>
+        <HomeLogsNotes type='logs' logsnotes={logs}/>
+        <HomeLogsNotes type='notes' logsnotes={notes}/>
       </div>
     );
   }
