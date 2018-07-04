@@ -52,9 +52,12 @@ exports.createPages = ({graphql, boundActionCreators}) => {
               }
               frontmatter {
                 title
-                images {
-                  bg
-                  preview
+                image_bg {
+                  childImageSharp {
+                    sizes {
+                      originalImg
+                    }
+                  }
                 }
               }
             }

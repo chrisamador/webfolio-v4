@@ -78,15 +78,25 @@ export const query = graphql`
            title
            primary_color
            preview
+           date
            meta {
              role
-             date
              client
              scope
            }
-           images {
-             bg
-             preview
+           image_bg {
+             childImageSharp {
+               sizes(quality: 90) {
+                 originalImg
+               }
+             }
+           }
+           image_preview {
+             childImageSharp {
+               sizes(quality: 90) {
+                 originalImg
+               }
+             }
            }
          }
        }

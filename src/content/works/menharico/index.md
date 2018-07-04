@@ -1,16 +1,14 @@
 ---
 title: Men Hair Co
-primary_color: "#7eb65b"
+primary_color: "#1D2931"
+date: 2016-06-01
 meta: {
   role: Designer and Developer,
-  date: Jul 2016,
   client: Personal Project,
   scope: Website Design Branding
 }
-images: {
-  bg: "https://res.cloudinary.com/camador/image/upload/v1525135371/webfolio/plnr.jpg",
-  preview: "https://res.cloudinary.com/camador/image/upload/v1525135371/webfolio/plnr-001.jpg"
-  }
+image_bg: "./images/menhairco.jpg"
+image_preview: "./images/menhairco-001.jpg"
 preview: "A great website done by me so look at it! I think it was done very well, you know?"
 ---
 
@@ -42,14 +40,10 @@ preview: "A great website done by me so look at it! I think it was done very wel
   </div>
 
   <div type="colors">
-    <div data-color="#7eb65b"></div>
-    <div data-color="#7eb65b"></div>
-    <div data-color="#7eb65b"></div>
-    <div data-color="#7eb65b"></div>
-  </div>
-
-  <div type="elements">
-    <img src="./images/typefaces.jpg" />
+    <div data-color="#1D2931"></div>
+    <div data-color="#6f352d"></div>
+    <div data-color="#847968"></div>
+    <div data-color="#232020"></div>
   </div>
 
 </work-styleguide>
@@ -65,12 +59,14 @@ preview: "A great website done by me so look at it! I think it was done very wel
   <figure type="col">
     <img src="./images/menhairco-003.jpg"/>
     <figcaption>
+      <h5>Title</h5>
       Simple caption for design
     </figcaption>
   </figure>
   <figure type="col">
     <img src="./images/menhairco-004.jpg"/>
     <figcaption>
+      <h5>Title</h5>
       Simple caption for design
     </figcaption>
   </figure>

@@ -24,12 +24,12 @@ class WorksSingle extends PureComponent<PropType, StateType> {
     let read = (userWorkMeta) ? userWorkMeta.read : false;
     if(!work) return null;
     return (
-      <div className="work-example" style={{backgroundImage: `url(${work.node.frontmatter.images.bg})`}}>
+      <div className="work-example" style={{backgroundImage: `url(${work.node.frontmatter.image_bg.childImageSharp.sizes.originalImg})`}}>
         <div className="container">
           <Row>
             <Col className="col-xs-12 col-sm-5">
               <div className="work-example__content">
-                <ReadStatus read={read} />
+                {/* <ReadStatus read={read} /> */}
                 <h2 className="work-example__title">{work.node.frontmatter.title}</h2>
                 <div className="work-example__preview">
                   <p>{work.node.frontmatter.preview}</p>
@@ -39,7 +39,7 @@ class WorksSingle extends PureComponent<PropType, StateType> {
             </Col>
             <Col className="col-xs-12 col-sm-7">
               <Link to={work.node.fields.slug}>
-                <MockScreen backgroundImage={work.node.frontmatter.images.preview}/>
+                <MockScreen backgroundImage={work.node.frontmatter.image_preview.childImageSharp.sizes.originalImg}/>
               </Link>
             </Col>
           </Row>

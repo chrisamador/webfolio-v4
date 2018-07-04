@@ -60,15 +60,25 @@ export type QueryWorksSingleType = {
       title: string,
       primary_color: string,
       preview: string,
+      date: string,
       meta: {
         role: string,
-        date: string,
         client: string,
         scope: string
       },
-      images: {
-        bg: string,
-        preview: string,
+      image_bg: {
+        childImageSharp: {
+          sizes: {
+            originalImg: string
+          }
+        }
+      },
+      image_preview: {
+        childImageSharp: {
+          sizes: {
+            originalImg: string
+          }
+        }
       }
     }
   }
@@ -126,15 +136,25 @@ export const query = graphql`
            title
            primary_color
            preview
+           date
            meta {
              role
-             date
              client
              scope
            }
-           images {
-             bg
-             preview
+           image_bg {
+             childImageSharp {
+               sizes(quality: 90) {
+                 originalImg
+               }
+             }
+           }
+           image_preview {
+             childImageSharp {
+               sizes(quality: 90) {
+                 originalImg
+               }
+             }
            }
          }
        }

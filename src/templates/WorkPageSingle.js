@@ -73,8 +73,8 @@ class WorkPageSingle extends PureComponent<PropType, StateType> {
           title={work.frontmatter.title}
           url={work.fields.slug}
           description={work.excerpt}
-          image={work.frontmatter.images.preview}/>
-        <div className="work-single__hero" style={{backgroundImage: `url(${work.frontmatter.images.bg})`}}>
+          image={work.frontmatter.image_bg.childImageSharp.sizes.originalImg}/>
+        <div className="work-single__hero" style={{backgroundImage: `url(${work.frontmatter.image_bg.childImageSharp.sizes.originalImg})`}}>
           <div className="container">
             <Row>
               <Col className="col-xs-12 col-sm-7">
@@ -108,10 +108,10 @@ class WorkPageSingle extends PureComponent<PropType, StateType> {
                     </div>
                     <div className="work-single__hero-mock-meta-single">
                       <h6>Release Date</h6>
-                      <small>{work.frontmatter.meta.date}</small>
+                      <small>{work.frontmatter.date}</small>
                     </div>
                   </div>
-                  <MockScreen backgroundImage={work.frontmatter.images.preview}/>
+                  <MockScreen backgroundImage={work.frontmatter.image_preview.childImageSharp.sizes.originalImg}/>
                 </div>
               </Col>
             </Row>
@@ -129,7 +129,7 @@ class WorkPageSingle extends PureComponent<PropType, StateType> {
             <div className="container">
               <Row>
                 <Col className="col-xs-12 col-sm-8 col-sm-offset-2">
-                  <Link to={next.fields.slug} onClick={this.anchorClick} className="work-single__next-link" style={{backgroundImage: `url(${next.frontmatter.images.bg})`}}>
+                  <Link to={next.fields.slug} onClick={this.anchorClick} className="work-single__next-link" style={{backgroundImage: `url(${next.frontmatter.image_bg.childImageSharp.sizes.originalImg})`}}>
                     <div>
                       <h6>Next Project</h6>
                       <h3>{next.frontmatter.title}</h3>
@@ -166,15 +166,25 @@ export type MatchedWorkSingleType = {
     title: string,
     primary_color: string,
     preview: string,
+    date: string,
     meta: {
       role: string,
-      date: string,
       client: string,
       scope: string
     },
-    images: {
-      bg: string,
-      preview: string,
+    image_bg: {
+      childImageSharp: {
+        sizes: {
+          originalImg: string
+        }
+      }
+    },
+    image_preview: {
+      childImageSharp: {
+        sizes: {
+          originalImg: string
+        }
+      }
     }
   }
 }
@@ -189,19 +199,29 @@ export const query = graphql`
       }
       excerpt
       htmlAst
-      frontmatter{
+      frontmatter {
         title
         primary_color
         preview
+        date
         meta {
           role
-          date
           client
           scope
         }
-        images {
-          bg
-          preview
+        image_bg {
+          childImageSharp {
+            sizes(quality: 90) {
+              originalImg
+            }
+          }
+        }
+        image_preview {
+          childImageSharp {
+            sizes(quality: 90) {
+              originalImg
+            }
+          }
         }
       }
     }
