@@ -99,7 +99,7 @@ class Header extends PureComponent<PropType, StateType> {
               </Link>
             </li>
             <li>
-              <a href="#" onClick={this.anchorClick}>
+              <a href="mailto:chris@chrisamador.me?subject=Website Contact&body=Hi Chris," onClick={this.anchorClick}>
                 Contact
               </a>
             </li>
