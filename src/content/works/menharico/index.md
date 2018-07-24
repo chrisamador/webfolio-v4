@@ -14,22 +14,8 @@ preview: "Branding, Web Design, and Web Development for a Barber Shop"
 
 <work-background>
 
-  <strong>Men Hair Co.</strong> a barber shop
+  <strong>Men Hair Co.</strong> a barber shop that specializes in haircuts, shaves, and other grooming services just for guys. A custom branding and website was created to market their new services and new locations.
 
-  <div>
-    <h5>Design</h5>
-    Some more things
-  </div>
-
-  <div>
-    <h5>Development</h5>
-    Some more things
-  </div>
-
-  <div>
-    <h5>Social Marketing</h5>
-    Some more things
-  </div>
 
 </work-background>
 
@@ -52,22 +38,21 @@ preview: "Branding, Web Design, and Web Development for a Barber Shop"
   <figure type="single">
     <img src="./images/menhairco-preview.jpg"/>
     <figcaption>
-      <h5>Title</h5>
-      Simple caption for design
+      <h5>Homepage</h5>
     </figcaption>
   </figure>
   <figure type="col">
     <img src="./images/menhairco-001.jpg"/>
     <figcaption>
-      <h5>Title</h5>
-      Simple caption for design
+      <h5>Instagram</h5>
+      Custom Instagram slider
     </figcaption>
   </figure>
   <figure type="col">
     <img src="./images/menhairco-002.jpg"/>
     <figcaption>
-      <h5>Title</h5>
-      Simple caption for design
+      <h5>Content Editor Features</h5>
+      An easy way to add new content
     </figcaption>
   </figure>
 </work-design>

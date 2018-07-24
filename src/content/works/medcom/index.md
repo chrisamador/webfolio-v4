@@ -16,21 +16,6 @@ preview: "Website Redesigned for a Government Agency that Recruits Health Profes
 
   <strong>U.S. Army Medicine Civilian Corps</strong> recruits civilian healthcare professionals to be employed by the Federal Government, primary under the U.S. Army. As part of an agency, I worked on creating and executing their marketing campaigns between 2014 - 2016. I worked on various large-scale projects, including promotional items, print/online advertisements, and the redesign of their website. I lead the development process on the website redesign project, taking the designers files and building a scalable, compliant, and mobile responsive website.
 
-  <div>
-    <h5>Frontend</h5>
-    Some more things
-  </div>
-
-  <div>
-    <h5>Clean UX</h5>
-    Designed for multiple User Profiles found at the Strategy Phase
-  </div>
-
-  <div>
-    <h5>Clean UX 2</h5>
-    Some more things
-  </div>
-
 </work-background>
 
 <work-styleguide>
