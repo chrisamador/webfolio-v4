@@ -37,7 +37,7 @@ class HomeHero extends PureComponent<PropType, StateType> {
 
         </div>
         <h6 className="home-hero__speed">
-          <span>Average 430 ms</span>
+          <span>Average 983 ms</span>
           <Icon id="icon-lighting" />
           <Icon id="icon-lighting" />
           <Icon id="icon-lighting" />
