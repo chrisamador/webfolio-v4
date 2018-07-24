@@ -34,8 +34,6 @@ class HomePage extends PureComponent<PropType, StateType> {
         <HomeHero />
         <HomeIntro />
         <HomeWorks works={works}/>
-        <HomeLogsNotes type='logs' logsnotes={logs}/>
-        <HomeLogsNotes type='notes' logsnotes={notes}/>
       </div>
     );
   }
