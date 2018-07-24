@@ -3,7 +3,8 @@ const path = require(`path`);
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const {createNodeField} = boundActionCreators;
-
+  // console.log(node.internal.type);
+  // console.log(node.path);
   if (node.internal.type === 'MarkdownRemark') {
 
     let slug = createFilePath({ node, getNode, basePath: 'src/content' });

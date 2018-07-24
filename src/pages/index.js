@@ -124,7 +124,11 @@ export const query = graphql`
         title
       }
     }
-    works: allMarkdownRemark(filter: {fields: {type: {eq: "work"}}}, limit: 3){
+    works: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fields: {type: {eq: "work"}}},
+      limit: 3
+      ){
       totalCount
       edges{
        node{

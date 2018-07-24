@@ -47,7 +47,7 @@ class HomeHero extends PureComponent<PropType, StateType> {
             <li><a target="_blank" rel="noopener noreferrer" href="http://codepen.io/chrisamador/"><Icon id="icon-codepen-logo"/></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/chrisamador"><Icon id="icon-github"/></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/chris-amador-b3307288"><Icon id="icon-linkedin"/></a></li>
-            <li><a href="#"><Icon id="icon-contact"/></a></li>
+            <li><a href="mailto:chris@chrisamador.me?subject=Website Contact&body=Hi Chris,"><Icon id="icon-contact"/></a></li>
           </ul>
         </div>
         <div className="home-hero__arrow">

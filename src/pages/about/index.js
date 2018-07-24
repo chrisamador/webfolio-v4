@@ -55,7 +55,7 @@ class About extends PureComponent<PropType, StateType> {
                   complicated problems.
                 </p>
                 <div className="about__contact-area">
-                  <button className="btn btn-white">Let&apos;s Talk!</button>
+                  <a href="mailto:chris@chrisamador.me?subject=Website Contact&body=Hi Chris," className="btn btn-white">Let&apos;s Talk!</a>
                 </div>
               </div>
             </Col>

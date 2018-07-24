@@ -9,7 +9,8 @@ import {cleanChildren} from './Section';
 import MockScreen from '../../components/shared/MockScreen';
 
 type PropType = {
-  color: string
+  color: string,
+  url?: string
 };
 type StateType = {};
 
@@ -44,11 +45,23 @@ class Designs extends PureComponent<PropType, StateType> {
                 );
               })}
             </Row>
+            <div>
+              {this.props.url && <LinkToSite url={this.props.url} />}
+            </div>
           </div>
         </div>
       </Section>
     );
   }
+}
+
+const LinkToSite = ({url}) => {
+  return (
+    <div className="text-center">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="btn btn-white">Visit Live Site</a>
+      <a href="mailto:chris@chrisamador.me?subject=Website Contact&body=Hi Chris," className="btn btn-ghost-white">Contact Me</a>
+    </div>
+  )
 }
 
 export default Designs;

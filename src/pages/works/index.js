@@ -26,7 +26,6 @@ class WorkPageList extends PureComponent<PropType, StateType> {
   componentWillUnmount(){
   }
   render(){
-    console.log(this.props);
     return (
       <div className="works">
         <Seo
@@ -65,7 +64,10 @@ export default connect(() => ({
 // eslint-disable-next-line
 export const query = graphql`
   query WorkPageQuery {
-    works: allMarkdownRemark(filter: {fields: {type: {eq: "work"}}} ){
+    works: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fields: {type: {eq: "work"}}}
+      ){
       totalCount
       edges{
        node{

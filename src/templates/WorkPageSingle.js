@@ -16,6 +16,8 @@ import Seo from '../components/shared/Seo';
 
 import {SiteMetaActions} from '../state/reducers/siteMeta';
 
+import dateFormater from '../components/shared/ults/dateFormater';
+
 // Custom MD components
 import rehypeReact from 'rehype-react'
 import Background from './WorkComponent/Background';
@@ -108,7 +110,7 @@ class WorkPageSingle extends PureComponent<PropType, StateType> {
                     </div>
                     <div className="work-single__hero-mock-meta-single">
                       <h6>Release Date</h6>
-                      <small>{work.frontmatter.date}</small>
+                      <small>{dateFormater(work.frontmatter.date)}</small>
                     </div>
                   </div>
                   <MockScreen backgroundImage={work.frontmatter.image_preview.childImageSharp.sizes.originalImg}/>

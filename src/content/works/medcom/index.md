@@ -1,15 +1,15 @@
 ---
-title: Medcom Website
+title: U.S. Army Medicine Civilian Corps
 primary_color: "#1f607e"
-date: 2016-06-01
+date: 2016-08-01
 meta: {
-  role: Designer and Developer,
+  role: Lead Developer,
   client: Personal Project,
   scope: Website Design Branding
 }
-image_bg: "./images/medcom.jpg"
-image_preview: "./images/medcom-001.jpg"
-preview: "A great website done by me so look at it! I think it was done very well, you know?"
+image_bg: "./images/medcom-bg.jpg"
+image_preview: "./images/medcom-preview.jpg"
+preview: "Website Redesigned for a Government Agency that Recruits Health Professionals"
 ---
 
 <work-background>
@@ -23,7 +23,7 @@ preview: "A great website done by me so look at it! I think it was done very wel
 
   <div>
     <h5>Clean UX</h5>
-    Some more things
+    Designed for multiple User Profiles found at the Strategy Phase
   </div>
 
   <div>
@@ -36,7 +36,7 @@ preview: "A great website done by me so look at it! I think it was done very wel
 <work-styleguide>
 
   <div type="typefaces">
-    <img src="./images/medcom-brand-typefaces.jpg" />
+    <img src="./images/medcom-typefaces.jpg" />
   </div>
 
   <div type="colors">
@@ -45,30 +45,28 @@ preview: "A great website done by me so look at it! I think it was done very wel
     <div data-color="#e5e5e5"></div>
   </div>
 
-  <div type="elements">
-    <img src="./images/medcom-brand-typefaces.jpg" />
-  </div>
-
 </work-styleguide>
 
-<work-design color="#1f607e">
+<work-design color="#1f607e" url="https://civilianmedicaljobs.com/">
   <figure type="single">
+    <img src="./images/medcom-preview.jpg"/>
+    <figcaption>
+      <h5>Homepage</h5>
+    </figcaption>
+  </figure>
+  <figure type="col">
     <img src="./images/medcom-001.jpg"/>
     <figcaption>
-      <h5>Title</h5>
-      Simple caption for design
+    	<h5>Geo Location Features</h5>
+      Search results can be sorted by location
     </figcaption>
   </figure>
   <figure type="col">
-    <img src="./images/medcom-003.jpg"/>
+    <img src="./images/medcom-002.jpg"/>
     <figcaption>
-      Simple caption for design
-    </figcaption>s
-  </figure>
-  <figure type="col">
-    <img src="./images/medcom-004.jpg"/>
-    <figcaption>
-      Simple caption for design
+    	<h5>Custom Event Module</h5>
+      Built for the CMS of the clients choice
     </figcaption>
   </figure>
+
 </work-design>

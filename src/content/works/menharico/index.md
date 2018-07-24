@@ -7,27 +7,27 @@ meta: {
   client: Personal Project,
   scope: Website Design Branding
 }
-image_bg: "./images/menhairco.jpg"
-image_preview: "./images/menhairco-001.jpg"
-preview: "A great website done by me so look at it! I think it was done very well, you know?"
+image_bg: "./images/menhairco-bg.jpg"
+image_preview: "./images/menhairco-preview.jpg"
+preview: "Branding, Web Design, and Web Development for a Barber Shop"
 ---
 
 <work-background>
 
-  <strong>U.S. Army Medicine Civilian Corps</strong> recruits civilian healthcare professionals to be employed by the Federal Government, primary under the U.S. Army. As part of an agency, I worked on creating and executing their marketing campaigns between 2014 - 2016. I worked on various large-scale projects, including promotional items, print/online advertisements, and the redesign of their website. I lead the development process on the website redesign project, taking the designers files and building a scalable, compliant, and mobile responsive website.
+  <strong>Men Hair Co.</strong> a barber shop
 
   <div>
-    <h5>Frontend</h5>
+    <h5>Design</h5>
     Some more things
   </div>
 
   <div>
-    <h5>Clean UX</h5>
+    <h5>Development</h5>
     Some more things
   </div>
 
   <div>
-    <h5>Clean UX 2</h5>
+    <h5>Social Marketing</h5>
     Some more things
   </div>
 
@@ -36,7 +36,7 @@ preview: "A great website done by me so look at it! I think it was done very wel
 <work-styleguide>
 
   <div type="typefaces">
-    <img src="./images/typefaces.jpg" />
+    <img src="./images/menhairco-typefaces.jpg" />
   </div>
 
   <div type="colors">
@@ -50,6 +50,13 @@ preview: "A great website done by me so look at it! I think it was done very wel
 
 <work-design color="#1D2931">
   <figure type="single">
+    <img src="./images/menhairco-preview.jpg"/>
+    <figcaption>
+      <h5>Title</h5>
+      Simple caption for design
+    </figcaption>
+  </figure>
+  <figure type="col">
     <img src="./images/menhairco-001.jpg"/>
     <figcaption>
       <h5>Title</h5>
@@ -57,14 +64,7 @@ preview: "A great website done by me so look at it! I think it was done very wel
     </figcaption>
   </figure>
   <figure type="col">
-    <img src="./images/menhairco-003.jpg"/>
-    <figcaption>
-      <h5>Title</h5>
-      Simple caption for design
-    </figcaption>
-  </figure>
-  <figure type="col">
-    <img src="./images/menhairco-004.jpg"/>
+    <img src="./images/menhairco-002.jpg"/>
     <figcaption>
       <h5>Title</h5>
       Simple caption for design
