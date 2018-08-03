@@ -73,6 +73,8 @@ class Main extends PureComponent<PropType, StateType> {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
           <meta name="theme-color" content="#ffffff" />
+          {/* Google */}
+          <meta name="google-site-verification" content="zgnZ3tSisVlLfT6lVQHGeKkS2KKZXpypcq-qNd3BDMw" />
         </Helmet>
         {Symbols ? <Symbols className="hidden-svg" /> : null}
         <Header
