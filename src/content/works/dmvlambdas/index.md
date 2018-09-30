@@ -35,6 +35,9 @@ preview: "A Custom Event and Membership Website for a non-profit powered by Word
 
 <work-styleguide>
 
+  <div type="typefaces">
+    <img src="./images/dmvlambdas-typefaces.jpg" />
+  </div>
 
   <div type="colors">
     <div data-color="#502d1e"></div>
